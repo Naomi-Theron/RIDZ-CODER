@@ -9,34 +9,34 @@ export default function ProfileSection() {
 
   const services = [
     {
-      icon: <Code2 className="size-5" />,
+      icon: <Code2 className="size-6" />,
       title: "Web Development",
-      description: "Building responsive, modern websites with React, Tailwind, and modern tech stacks"
+      description: "I build responsive, modern, and high-performance websites using React, Tailwind CSS, and other cutting-edge technologies. From landing pages to complex web applications, I ensure seamless user experiences across all devices."
     },
     {
-      icon: <Smartphone className="size-5" />,
+      icon: <Smartphone className="size-6" />,
       title: "App Development",
-      description: "Creating cross-platform mobile applications with great user experiences"
+      description: "Creating cross-platform mobile applications that work flawlessly on both iOS and Android. I focus on intuitive interfaces, smooth animations, and efficient performance to deliver engaging mobile experiences."
     },
     {
-      icon: <Database className="size-5" />,
+      icon: <Database className="size-6" />,
       title: "Backend Development",
-      description: "Developing robust APIs, databases, and server-side logic"
+      description: "Designing and implementing robust server-side logic, RESTful APIs, and database architectures. I work with various databases and frameworks to ensure data flows securely and efficiently between frontend and backend systems."
     },
     {
-      icon: <Globe className="size-5" />,
+      icon: <Globe className="size-6" />,
       title: "Software Development",
-      description: "Building scalable desktop and web software solutions"
+      description: "Building scalable desktop and web software solutions tailored to specific business needs. I write clean, maintainable code that solves real-world problems and enhances productivity for users."
     },
     {
-      icon: <Share2 className="size-5" />,
-      title: "Tech Collaboration",
-      description: "Sharing knowledge, collaborating on projects, and contributing to the dev community"
+      icon: <Share2 className="size-6" />,
+      title: "Tech Collaboration & Knowledge Sharing",
+      description: "I'm passionate about giving back to the tech community. I actively collaborate with other developers, share insights through discussions, and believe that collective growth makes the tech ecosystem stronger for everyone."
     },
     {
-      icon: <GraduationCap className="size-5" />,
-      title: "Continuous Learning",
-      description: "Always exploring new technologies and improving my skills"
+      icon: <GraduationCap className="size-6" />,
+      title: "Continuous Learning & Growth",
+      description: "Technology evolves rapidly, and so do I. I'm constantly exploring new frameworks, tools, and best practices. From AI to cloud computing, I love expanding my skillset and staying ahead of industry trends."
     }
   ];
 
@@ -74,8 +74,7 @@ export default function ProfileSection() {
       {/* Bio Section */}
       <div className="max-w-2xl mt-6 text-center space-y-3">
         <p className="text-muted-foreground text-sm leading-relaxed">
-                   I'm a self-learned developer from Uganda.Don't Ask For My Age Am Old Enough
-        </p>
+          I'm a self-learned developer from Uganda.Don't Ask For My Age Am Old Enough        </p>
         <p className="text-muted-foreground text-sm leading-relaxed">
           I have a passion for web development, app and software development, backend development 
           and I love to learn new things. I'm also a tech enthusiast and I love to share my knowledge 
@@ -83,35 +82,26 @@ export default function ProfileSection() {
         </p>
       </div>
 
-<div className="relative my-6">
-  <div className="absolute inset-0 flex items-center">
-    <div className="w-full border-t border-border"></div>
-  </div>
-  <div className="relative flex justify-center">
-    <span className="px-3 bg-background text-muted-foreground text-xs">✦</span>
-  </div>
-</div>
-
       {/* What I Do Section */}
       <div className="max-w-4xl w-full mt-10">
         <h2 className="text-xl font-semibold text-foreground text-center mb-6">
           What I Do
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group p-4 rounded-xl border border-border bg-card/50 hover:bg-card transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              className="group p-5 rounded-xl border border-border bg-card/50 hover:bg-card transition-all duration-300 hover:scale-105 hover:shadow-lg text-center"
             >
-              <div className="flex items-center gap-3 mb-2">
+              <div className="flex justify-center mb-3">
                 <div className="text-primary group-hover:scale-110 transition-transform duration-200">
                   {service.icon}
                 </div>
-                <h3 className="font-semibold text-foreground text-sm">
-                  {service.title}
-                </h3>
               </div>
-              <p className="text-muted-foreground text-xs leading-relaxed">
+              <h3 className="font-semibold text-foreground text-base mb-2">
+                {service.title}
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">
                 {service.description}
               </p>
             </div>
