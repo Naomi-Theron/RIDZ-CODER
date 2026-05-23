@@ -8,7 +8,7 @@ export default function ProjectsSection() {
 
   return (
     <section id="projects" className="px-4 py-10">
-      <h2 className="section-title text-center mb-6">Projects</h2>
+      <h2 className="section-title text-center mb-6">My Projects</h2>
 
       {sorted.length === 0 ? (
         <div className="glass-card rounded-2xl p-10 text-center max-w-sm mx-auto">
