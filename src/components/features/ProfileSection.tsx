@@ -1,10 +1,44 @@
 import { Download } from 'lucide-react';
+import { Code2, Globe, Database, Smartphone, Share2, GraduationCap } from 'lucide-react';
 import avatarImg from '@/assets/avatar.jpg';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
 import { TYPING_ROLES } from '@/constants/config';
 
 export default function ProfileSection() {
   const typedRole = useTypingEffect(TYPING_ROLES, 110, 70, 1800);
+
+  const services = [
+    {
+      icon: <Code2 className="size-5" />,
+      title: "Web Development",
+      description: "Building responsive, modern websites with React, Tailwind, and modern tech stacks"
+    },
+    {
+      icon: <Smartphone className="size-5" />,
+      title: "App Development",
+      description: "Creating cross-platform mobile applications with great user experiences"
+    },
+    {
+      icon: <Database className="size-5" />,
+      title: "Backend Development",
+      description: "Developing robust APIs, databases, and server-side logic"
+    },
+    {
+      icon: <Globe className="size-5" />,
+      title: "Software Development",
+      description: "Building scalable desktop and web software solutions"
+    },
+    {
+      icon: <Share2 className="size-5" />,
+      title: "Tech Collaboration",
+      description: "Sharing knowledge, collaborating on projects, and contributing to the dev community"
+    },
+    {
+      icon: <GraduationCap className="size-5" />,
+      title: "Continuous Learning",
+      description: "Always exploring new technologies and improving my skills"
+    }
+  ];
 
   return (
     <section id="home" className="flex flex-col items-center pt-28 pb-10 px-4 animate-fade-in-up">
@@ -40,7 +74,7 @@ export default function ProfileSection() {
       {/* Bio Section */}
       <div className="max-w-2xl mt-6 text-center space-y-3">
         <p className="text-muted-foreground text-sm leading-relaxed">
-          I'm a self-learned developer from Uganda.Don't Ask For My Age Am Old Enough
+                   I'm a self-learned developer from Uganda.Don't Ask For My Age Am Old Enough
         </p>
         <p className="text-muted-foreground text-sm leading-relaxed">
           I have a passion for web development, app and software development, backend development 
@@ -48,16 +82,39 @@ export default function ProfileSection() {
           as well as collaborate with others.
         </p>
       </div>
-<div className="flex justify-center gap-3 mt-2 text-muted-foreground text-xs">
-  <span>🇺🇬 Uganda</span>
-  <span>💻 Self-taught Developer</span>
-</div>
+
+      {/* What I Do Section */}
+      <div className="max-w-4xl w-full mt-10">
+        <h2 className="text-xl font-semibold text-foreground text-center mb-6">
+          What I Do
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="group p-4 rounded-xl border border-border bg-card/50 hover:bg-card transition-all duration-300 hover:scale-105 hover:shadow-lg"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <div className="text-primary group-hover:scale-110 transition-transform duration-200">
+                  {service.icon}
+                </div>
+                <h3 className="font-semibold text-foreground text-sm">
+                  {service.title}
+                </h3>
+              </div>
+              <p className="text-muted-foreground text-xs leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Resume download */}
       <a
         href="/resume.pdf"
         download
-        className="mt-6 glow-button inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold transition-all duration-200 hover:brightness-110"
+        className="mt-10 glow-button inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold transition-all duration-200 hover:brightness-110"
       >
         <Download className="size-4" />
         Download Resume
