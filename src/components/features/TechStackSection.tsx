@@ -3,7 +3,7 @@ import { TECH_STACK } from '@/constants/config';
 export default function TechStackSection() {
   return (
     <section id="tech" className="px-4 py-10 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
-      <h2 className="section-title text-center mb-6">Tech Stack</h2>
+      <h2 className="section-title text-center mb-6">My Tech Stack</h2>
       <div className="grid grid-cols-3 gap-3 max-w-sm mx-auto">
         {TECH_STACK.map((tech) => (
           <div
