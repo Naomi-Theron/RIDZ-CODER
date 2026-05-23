@@ -8,8 +8,8 @@ export default defineConfig({
     host: "::",
     port: 8080,
     headers: {
-      // Prevent your site from being embedded in iframes on other domains
       "X-Frame-Options": "SAMEORIGIN",
+      "X-Content-Type-Options": "nosniff",
     },
   },
   plugins: [
