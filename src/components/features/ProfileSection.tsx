@@ -83,6 +83,15 @@ export default function ProfileSection() {
         </p>
       </div>
 
+<div className="relative my-6">
+  <div className="absolute inset-0 flex items-center">
+    <div className="w-full border-t border-border"></div>
+  </div>
+  <div className="relative flex justify-center">
+    <span className="px-3 bg-background text-muted-foreground text-xs">✦</span>
+  </div>
+</div>
+
       {/* What I Do Section */}
       <div className="max-w-4xl w-full mt-10">
         <h2 className="text-xl font-semibold text-foreground text-center mb-6">
