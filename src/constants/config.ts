@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
 export const SOCIAL_LINKS: SocialLink[] = [
   { name: 'GitHub', url: 'https://github.com/ridzcoder', icon: 'github' },
   { name: 'Telegram', url: 'https://t.me/ridzcoder', icon: 'send' },
-  { name: 'WhatsApp', url: 'https://wa.me/message/ridzcoder', icon: 'messageCircle' },
+  { name: 'WhatsApp', url: 'https://wa.me/+237678687593', icon: 'messageCircle' },
 ];
 
 export const TECH_STACK: TechItem[] = [
@@ -29,7 +29,7 @@ export const TECH_STACK: TechItem[] = [
   { name: 'Supabase', icon: '⚡' },
 ];
 
-export const TYPING_ROLES = ['Developer', 'Designer', 'Creator', 'Innovator'];
+export const TYPING_ROLES = ['Developer', 'Designer', 'Creator', 'Innovator','Graphics Desiger'];
 
 export const AUTH_CREDENTIALS = {
   email: 'ridzcoder@gmail.com',
