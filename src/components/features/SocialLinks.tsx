@@ -1,5 +1,5 @@
-import { Github, Send, MessageCircle, Twitter, Linkedin, Instagram, Youtube, Globe } from 'lucide-react';
-import { useSocialLinksStore } from '@/stores/socialLinksStore';
+import { Github, Send, MessageCircle, Twitter, Linkedin, Instagram, Youtube } from 'lucide-react';
+import { SOCIAL_LINKS } from '@/constants/config';
 
 const ICON_MAP: Record<string, React.ElementType> = {
   github: Github,
@@ -9,20 +9,18 @@ const ICON_MAP: Record<string, React.ElementType> = {
   linkedin: Linkedin,
   instagram: Instagram,
   youtube: Youtube,
-  globe: Globe,
 };
 
 export default function SocialLinks() {
-  const { links } = useSocialLinksStore();
-
   return (
     <div className="flex flex-wrap items-center justify-center gap-3 py-6 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
-      {links.map((link) => {
-        const Icon = ICON_MAP[link.icon.toLowerCase()];
+      {SOCIAL_LINKS.map((link) => {
+        const Icon = ICON_MAP[link.icon];
+        // Fallback to a generic link icon if not found
         if (!Icon) return null;
         return (
           <a
-            key={link.id}
+            key={link.name}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
