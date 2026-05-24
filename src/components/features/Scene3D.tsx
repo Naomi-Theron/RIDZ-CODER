@@ -12,7 +12,8 @@ function generateParticles(): Particle[] {
     duration: Math.random() * 8 + 4,
     delay: Math.random() * 6,
     opacity: Math.random() * 0.4 + 0.1,
-    color: Math.random() > 0.6 ? '#ff1744' : 'rgba(255,255,255,0.6)',
+    // Deep blue variants
+    color: Math.random() > 0.6 ? '#3b82f6' : 'rgba(255,255,255,0.6)',
   }));
 }
 
@@ -26,22 +27,22 @@ export default function Scene3D() {
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-background" />
 
-      {/* Red glow top-right */}
+      {/* Blue glow top-right */}
       <div
         className="absolute -top-32 -right-32 size-96 rounded-full opacity-15 blur-3xl"
-        style={{ background: 'radial-gradient(circle, #ff1744, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, #3b82f6, transparent 70%)' }}
       />
 
-      {/* Purple glow bottom-left */}
+      {/* Deep blue glow bottom-left */}
       <div
         className="absolute -bottom-48 -left-48 size-[500px] rounded-full opacity-10 blur-3xl"
-        style={{ background: 'radial-gradient(circle, #9c27b0, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, #1e3a8a, transparent 70%)' }}
       />
 
-      {/* Teal glow center */}
+      {/* Bright blue glow center */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[600px] rounded-full opacity-[0.04] blur-3xl"
-        style={{ background: 'radial-gradient(circle, #00bcd4, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, #3b82f6, transparent 70%)' }}
       />
 
       {/* Particles */}
@@ -56,7 +57,7 @@ export default function Scene3D() {
             height: `${p.size}px`,
             background: p.color,
             opacity: p.opacity,
-            boxShadow: p.color === '#ff1744' ? `0 0 6px ${p.color}` : 'none',
+            boxShadow: p.color === '#3b82f6' ? `0 0 6px ${p.color}` : 'none',
             animationDelay: `${p.delay}s`,
             '--duration': `${p.duration}s`,
           } as React.CSSProperties}
@@ -67,9 +68,9 @@ export default function Scene3D() {
       <div
         className="absolute top-[15%] right-[18%] size-24 animate-spin-slow opacity-20"
         style={{
-          border: '1px solid #ff1744',
+          border: '1px solid #3b82f6',
           borderRadius: '30% 70% 70% 30% / 30% 30% 70% 70%',
-          boxShadow: '0 0 20px rgba(255, 23, 68, 0.15)',
+          boxShadow: '0 0 20px rgba(59, 130, 246, 0.15)',
         }}
       />
 
@@ -77,9 +78,9 @@ export default function Scene3D() {
       <div
         className="absolute top-[60%] left-[12%] size-16 animate-drift opacity-15"
         style={{
-          border: '1px solid #9c27b0',
+          border: '1px solid #1e3a8a',
           transform: 'rotate(45deg)',
-          boxShadow: '0 0 16px rgba(156, 39, 176, 0.1)',
+          boxShadow: '0 0 16px rgba(30, 58, 138, 0.1)',
         }}
       />
 
@@ -87,8 +88,8 @@ export default function Scene3D() {
       <div
         className="absolute bottom-[22%] right-[10%] w-20 h-10 rounded-full animate-float opacity-15"
         style={{
-          border: '1px solid #ff1744',
-          boxShadow: '0 0 14px rgba(255, 23, 68, 0.1)',
+          border: '1px solid #3b82f6',
+          boxShadow: '0 0 14px rgba(59, 130, 246, 0.1)',
         }}
       />
 
