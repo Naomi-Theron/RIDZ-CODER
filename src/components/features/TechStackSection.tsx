@@ -1,9 +1,8 @@
-// src/components/features/TechStackSection.tsx
-import { TECH_STACK } from '@/constants/config';
 import * as Icons from 'react-icons/si';
 import { IconType } from 'react-icons';
+import { useTechStackStore } from '@/stores/techStackStore';
 
-// Map icon names (strings) to actual react-icons components
+// Map icon names to actual components
 const iconMap: Record<string, IconType> = {
   SiReact: Icons.SiReact,
   SiTypescript: Icons.SiTypescript,
@@ -17,18 +16,21 @@ const iconMap: Record<string, IconType> = {
   SiFirebase: Icons.SiFirebase,
   SiNextdotjs: Icons.SiNextdotjs,
   SiSupabase: Icons.SiSupabase,
+  SiCode: Icons.SiCode,
 };
 
 export default function TechStackSection() {
+  const { items } = useTechStackStore();
+
   return (
     <section id="tech" className="px-4 py-10 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
       <h2 className="section-title text-center mb-6">My Tech Stack</h2>
       <div className="grid grid-cols-4 gap-2 max-w-md mx-auto">
-        {TECH_STACK.map((tech) => {
+        {items.map((tech) => {
           const IconComponent = iconMap[tech.icon];
           return (
             <div
-              key={tech.name}
+              key={tech.id}
               className="glass-card-hover rounded-lg px-2 py-2 flex flex-col items-center gap-1 text-center transition-transform duration-200 hover:scale-105"
             >
               {IconComponent ? (
