@@ -14,19 +14,20 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { name: 'WhatsApp', url: 'https://wa.me/+237678687593', icon: 'messageCircle' },
 ];
 
+// Updated: store icon names (camelCase as used by lucide-react)
 export const TECH_STACK: TechItem[] = [
-  { name: 'React', icon: '🌋' },
-  { name: 'TypeScript', icon: '🏔️' },
-  { name: 'Node.js', icon: '🪀' },
-  { name: 'Python', icon: '🧚' },
-  { name: 'Tailwind CSS', icon: '🍂' },
-  { name: 'MongoDB', icon: '🍃' },
-  { name: 'PostgreSQL', icon: '❄️' },
-  { name: 'Git', icon: '☄️' },
-  { name: 'Docker', icon: '🐳' },
-  { name: 'Firebase', icon: '🔥' },
-  { name: 'Next.js', icon: '🦁' },
-  { name: 'Supabase', icon: '⚡' },
+  { name: 'React', icon: 'react' },
+  { name: 'TypeScript', icon: 'fileCode' },
+  { name: 'Node.js', icon: 'node' },
+  { name: 'Python', icon: 'python' },
+  { name: 'Tailwind CSS', icon: 'tailwind' },
+  { name: 'MongoDB', icon: 'database' },
+  { name: 'PostgreSQL', icon: 'database' },
+  { name: 'Git', icon: 'gitBranch' },
+  { name: 'Docker', icon: 'docker' },
+  { name: 'Firebase', icon: 'flame' },
+  { name: 'Next.js', icon: 'next' },
+  { name: 'Supabase', icon: 'zap' },
 ];
 
 export const TYPING_ROLES = ['Developer', 'Designer', 'Creator', 'Innovator','Graphics Desiger'];
