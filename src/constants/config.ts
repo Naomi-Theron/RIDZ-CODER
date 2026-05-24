@@ -1,4 +1,3 @@
-// src/constants/config.ts
 import type { TechItem, SocialLink } from '@/types';
 
 export const SITE_CONFIG = {
@@ -13,9 +12,13 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { name: 'GitHub', url: 'https://github.com/ridzcoder', icon: 'github' },
   { name: 'Telegram', url: 'https://t.me/ridzcoder', icon: 'send' },
   { name: 'WhatsApp', url: 'https://wa.me/+237678687593', icon: 'messageCircle' },
+  // New social links
+  { name: 'Twitter (X)', url: 'https://twitter.com/ridzcoder', icon: 'twitter' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/ridzcoder', icon: 'linkedin' },
+  { name: 'Instagram', url: 'https://instagram.com/ridzcoder', icon: 'instagram' },
+  { name: 'YouTube', url: 'https://youtube.com/@ridzcoder', icon: 'youtube' },
 ];
 
-// Tech stack with react-icons (Simple Icons) names
 export const TECH_STACK: TechItem[] = [
   { name: 'React', icon: 'SiReact' },
   { name: 'TypeScript', icon: 'SiTypescript' },
@@ -31,13 +34,7 @@ export const TECH_STACK: TechItem[] = [
   { name: 'Supabase', icon: 'SiSupabase' },
 ];
 
-export const TYPING_ROLES = [
-  'Developer',
-  'Designer',
-  'Creator',
-  'Innovator',
-  'Graphics Designer'
-];
+export const TYPING_ROLES = ['Developer', 'Designer', 'Creator', 'Innovator', 'Graphics Designer'];
 
 export const AUTH_CREDENTIALS = {
   email: 'ridzcoder@gmail.com',
