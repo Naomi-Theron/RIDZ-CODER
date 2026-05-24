@@ -35,7 +35,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </div>
 
         {/* Tech badges */}
-        <div className="flex flex-wrap gap-1.5 mb-4">
+        <div className="flex flex-wrap gap-1.5 mb-5">
           {project.techs.map((tech) => (
             <span
               key={tech}
@@ -46,16 +46,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
 
-        {/* CTA */}
-        <a
-          href={project.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="glow-button inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold transition-all duration-200 hover:brightness-110"
-        >
-          {project.buttonText || 'View Project'}
-          <ExternalLink className="size-3.5" />
-        </a>
+        {/* CTA - Centered */}
+        <div className="flex justify-center">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glow-button inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold transition-all duration-200 hover:brightness-110"
+          >
+            {project.buttonText || 'View Project'}
+            <ExternalLink className="size-3.5" />
+          </a>
+        </div>
       </div>
     </div>
   );
