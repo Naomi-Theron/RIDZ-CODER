@@ -28,27 +28,31 @@ export default function MenuButton() {
 
   return (
     <>
-      {/* Logo with background - only show on home page */}
+      {/* Top bar that connects logo and menu button */}
       {isHome && (
-        <div className="fixed top-5 left-5 z-50">
-          <div className="glass-card inline-flex items-center gap-2 px-3 py-1.5 rounded-full">
-            <Code className="size-4 text-primary" />
-            <span className="text-sm font-extrabold tracking-wide text-foreground">
-              RIDZ CODER
-            </span>
+        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl">
+          <div className="glass-card rounded-2xl px-4 py-2 flex items-center justify-between">
+            {/* Left: Logo */}
+            <div className="flex items-center gap-2">
+              <Code className="size-4 text-primary" />
+              <span className="text-sm font-extrabold tracking-wide text-foreground">
+                RIDZ CODER
+              </span>
+            </div>
+
+            {/* Right: Hamburger menu button */}
+            <button
+              onClick={() => setOpen(!open)}
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              className="glass-card size-9 rounded-full flex items-center justify-center text-foreground transition-colors hover:text-primary"
+            >
+              {open ? <X className="size-4" /> : <Menu className="size-4" />}
+            </button>
           </div>
         </div>
       )}
 
-      {/* Hamburger menu button */}
-      <button
-        onClick={() => setOpen(!open)}
-        aria-label={open ? 'Close menu' : 'Open menu'}
-        className="fixed top-5 right-5 z-50 glass-card size-11 rounded-full flex items-center justify-center text-foreground transition-colors hover:text-primary"
-      >
-        {open ? <X className="size-5" /> : <Menu className="size-5" />}
-      </button>
-
+      {/* Keep the existing drawer logic (unchanged) */}
       <AnimatePresence>
         {open && (
           <>
