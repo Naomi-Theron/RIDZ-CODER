@@ -1,32 +1,18 @@
-import {
-  ReactIcon, // Note: Lucide doesn't have a "react" icon, we'll use a different approach
-  FileCode,
-  Terminal,
-  Python,
-  Tailwind,
-  Database,
-  GitBranch,
-  Docker,
-  Flame,
-  Box, // placeholder for Next.js (or use a custom icon)
-  Zap,
-} from 'lucide-react';
+import { SiReact, SiTypescript, SiNodedotjs, SiPython, SiTailwindcss, SiMongodb, SiPostgresql, SiGit, SiDocker, SiFirebase, SiNextdotjs, SiSupabase } from 'react-icons/si';
 import { TECH_STACK } from '@/constants/config';
 
-// Create a mapping from icon name to Lucide component
-// (Lucide doesn't have all brand icons; you might need to use `lucide-react/icons` or `react-icons` library for better brand support)
-const iconMap: Record<string, any> = {
-  react: () => <span className="text-2xl text-cyan-400">⚛️</span>, // Fallback emoji, but better use react-icons
-  fileCode: FileCode,
-  node: Terminal,
-  python: Python,
-  tailwind: Tailwind,
-  database: Database,
-  gitBranch: GitBranch,
-  docker: Docker,
-  flame: Flame,
-  next: Box,
-  zap: Zap,
+const iconMap = {
+  react: SiReact,
+  fileCode: SiTypescript,
+  node: SiNodedotjs,
+  python: SiPython,
+  tailwind: SiTailwindcss,
+  database: SiMongodb, // you can differentiate MongoDB vs PostgreSQL later
+  gitBranch: SiGit,
+  docker: SiDocker,
+  flame: SiFirebase,
+  next: SiNextdotjs,
+  zap: SiSupabase,
 };
 
 export default function TechStackSection() {
@@ -41,11 +27,7 @@ export default function TechStackSection() {
               key={tech.name}
               className="glass-card-hover rounded-lg px-2 py-2 flex flex-col items-center gap-1 text-center transition-transform duration-200 hover:scale-105"
             >
-              {IconComponent ? (
-                <IconComponent className="size-5 text-primary" strokeWidth={1.5} />
-              ) : (
-                <span className="text-xl">🔧</span>
-              )}
+              {IconComponent && <IconComponent className="size-5 text-primary" />}
               <span className="text-[10px] font-medium text-muted-foreground leading-tight">
                 {tech.name}
               </span>
