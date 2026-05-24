@@ -14,6 +14,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { name: 'WhatsApp', url: 'https://wa.me/+237678687593', icon: 'messageCircle' },
   // New social links
   { name: 'Twitter (X)', url: 'https://twitter.com/ridzcoder', icon: 'twitter' },
+  { name: 'LinkedIn', url: 'https://linkedin.com/in/ridzcoder', icon: 'linkedin' },
   { name: 'Instagram', url: 'https://instagram.com/ridzcoder', icon: 'instagram' },
   { name: 'YouTube', url: 'https://youtube.com/@ridzcoder', icon: 'youtube' },
 ];
