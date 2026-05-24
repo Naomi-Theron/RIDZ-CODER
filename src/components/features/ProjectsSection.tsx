@@ -1,33 +1,87 @@
-import { useProjectStore } from '@/stores/projectStore';
-import ProjectCard from '@/components/features/ProjectCard';
-import { FolderOpen } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
-export default function ProjectsSection() {
-  const projects = useProjectStore((s) => s.projects);
-  const sorted = [...projects].sort((a, b) => a.sortOrder - b.sortOrder);
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  imageUrl?: string;
+  liveUrl?: string;
+  githubUrl?: string;
+  sortOrder: number;
+}
 
+interface ProjectCardProps {
+  project: Project;
+}
+
+export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <section id="projects" className="px-4 py-10">
-      <h2 className="section-title text-center mb-6">My Projects</h2>
-
-      {sorted.length === 0 ? (
-        <div className="glass-card rounded-2xl p-10 text-center max-w-sm mx-auto">
-          <FolderOpen className="size-12 text-muted-foreground mx-auto mb-3" />
-          <p className="text-muted-foreground text-sm">No projects yet.</p>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-5 max-w-lg mx-auto">
-          {sorted.map((project, i) => (
-            <div
-              key={project.id}
-              className="animate-fade-in-up"
-              style={{ animationDelay: `${0.1 * i}s` }}
-            >
-              <ProjectCard project={project} />
-            </div>
-          ))}
+    <div className="glass-card rounded-2xl overflow-hidden bg-card/50 hover:bg-card transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+      {/* Project Image (if available) */}
+      {project.imageUrl && (
+        <div className="relative h-48 overflow-hidden">
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          />
         </div>
       )}
-    </section>
+      
+      {/* Content */}
+      <div className="p-5">
+        {/* Title */}
+        <h3 className="text-xl font-semibold text-foreground mb-2">
+          {project.title}
+        </h3>
+        
+        {/* Description */}
+        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+          {project.description}
+        </p>
+        
+        {/* Tech Stack Tags */}
+        <div className="flex flex-wrap gap-2 mb-5">
+          {project.techStack.map((tech) => (
+            <Badge
+              key={tech}
+              variant="secondary"
+              className="text-xs bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+            >
+              {tech}
+            </Badge>
+          ))}
+        </div>
+        
+        {/* Action Buttons - Centered */}
+        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          {project.liveUrl && (
+            <Button
+              onClick={() => window.open(project.liveUrl, '_blank')}
+              className="gap-2 bg-primary text-primary-foreground hover:brightness-110"
+              size="default"
+            >
+              <ExternalLink className="size-4" />
+              View Project
+            </Button>
+          )}
+          
+          {project.githubUrl && (
+            <Button
+              onClick={() => window.open(project.githubUrl, '_blank')}
+              variant="outline"
+              className="gap-2"
+              size="default"
+            >
+              <Github className="size-4" />
+              GitHub
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
