@@ -1,18 +1,14 @@
 import { Download } from 'lucide-react';
-import avatarImg from '@/assets/avatar.jpg'; // fallback
+import avatarImg from '@/assets/avatar.jpg';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
-import { useSettingsStore } from '@/stores/settingsStore';
+import { TYPING_ROLES } from '@/constants/config';
 
 export default function ProfileSection() {
-  const { name, bio, avatarUrl, typingRoles, resumeUrl } = useSettingsStore();
-  const typedRole = useTypingEffect(typingRoles, 110, 70, 1800);
-
-  // fallback to default avatar if none provided
-  const avatarSrc = avatarUrl || avatarImg;
+  const typedRole = useTypingEffect(TYPING_ROLES, 110, 70, 1800);
 
   return (
     <section id="home" className="flex flex-col items-center pt-28 pb-10 px-4 animate-fade-in-up">
-      {/* Avatar */}
+      {/* Avatar with animated gradient border */}
       <div className="relative mb-6">
         <div
           className="absolute -inset-1 rounded-full animate-color-shift opacity-80"
@@ -22,14 +18,16 @@ export default function ProfileSection() {
           }}
         />
         <div className="relative size-28 rounded-full overflow-hidden border-2 border-background">
-          <img src={avatarSrc} alt={name} className="size-full object-cover" />
+          <img src={avatarImg} alt="Ridz Coder" className="size-full object-cover" />
         </div>
       </div>
 
-      {/* Name with glass background */}
+      {/* Name with glass background - centered */}
       <div className="mb-2">
         <div className="glass-card inline-block px-6 py-2 rounded-full">
-          <h1 className="text-3xl font-bold text-foreground text-balance">{name}</h1>
+          <h1 className="text-3xl font-bold text-foreground text-balance">
+            Ridz Coder
+          </h1>
         </div>
       </div>
 
@@ -41,16 +39,21 @@ export default function ProfileSection() {
 
       {/* Bio Section */}
       <div className="max-w-2xl mt-6 text-center space-y-3">
-        {bio.map((paragraph, idx) => (
-          <p key={idx} className="text-muted-foreground text-sm leading-relaxed">
-            {paragraph}
-          </p>
-        ))}
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          I'm a self-learned developer from Kenya. I'm still a student, currently in third year
+          at <span className="text-foreground font-medium">Moi University - Eldoret</span>,
+          pursuing a Bachelor of Business Management in the School of Business and Economics.
+        </p>
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          I have a passion for web development, app and software development, backend development
+          and I love to learn new things. I'm also a tech enthusiast and I love to share my knowledge
+          as well as collaborate with others.
+        </p>
       </div>
 
       {/* Resume download */}
       <a
-        href={resumeUrl}
+        href="/resume.pdf"
         download
         className="mt-6 glow-button inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-semibold transition-all duration-200 hover:brightness-110"
       >
