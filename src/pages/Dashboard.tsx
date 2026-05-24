@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Plus, Pencil, Trash2, Save, X, ArrowLeft, LayoutDashboard, GripVertical, ExternalLink,
-  Github, Send, MessageCircle, Twitter, Linkedin, Instagram, Youtube,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -17,7 +16,7 @@ import { useSocialLinksStore } from '@/stores/socialLinksStore';
 import { toast } from 'sonner';
 import type { Project } from '@/types';
 import MenuButton from '@/components/layout/MenuButton';
-import Scene3D from '@/components/features/Scene3D';
+// import Scene3D from '@/components/features/Scene3D'; // Uncomment if you have it, otherwise comment out
 
 // ---------- Helper: Project Form ----------
 interface ProjectFormData {
@@ -67,8 +66,8 @@ function ProfileEditor() {
           <Input value={title} onChange={e => updateSettings({ title: e.target.value })} className="bg-background/50" />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm text-muted-foreground">Avatar URL</Label>
-          <Input value={avatarUrl} onChange={e => updateSettings({ avatarUrl: e.target.value })} className="bg-background/50" />
+          <Label className="text-sm text-muted-foreground">Avatar URL (optional)</Label>
+          <Input value={avatarUrl} onChange={e => updateSettings({ avatarUrl: e.target.value })} placeholder="https://..." className="bg-background/50" />
         </div>
         <div className="space-y-1.5">
           <Label className="text-sm text-muted-foreground">Resume PDF URL</Label>
@@ -270,7 +269,8 @@ export default function Dashboard() {
 
   return (
     <div className="relative min-h-screen">
-      <Scene3D />
+      {/* Uncomment Scene3D if you have it */}
+      {/* <Scene3D /> */}
       <MenuButton />
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 py-8">
