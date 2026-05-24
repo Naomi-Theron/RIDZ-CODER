@@ -1,29 +1,52 @@
-// components/features/TechStackIcon.tsx
-import * as Icons from 'react-icons/si';
-import { IconType } from 'react-icons';
+// src/constants/config.ts
+import type { TechItem, SocialLink } from '@/types';
 
-const iconMap: Record<string, IconType> = {
-  SiReact: Icons.SiReact,
-  SiTypescript: Icons.SiTypescript,
-  SiNodedotjs: Icons.SiNodedotjs,
-  SiPython: Icons.SiPython,
-  SiTailwindcss: Icons.SiTailwindcss,
-  SiMongodb: Icons.SiMongodb,
-  SiPostgresql: Icons.SiPostgresql,
-  SiGit: Icons.SiGit,
-  SiDocker: Icons.SiDocker,
-  SiFirebase: Icons.SiFirebase,
-  SiNextdotjs: Icons.SiNextdotjs,
-  SiSupabase: Icons.SiSupabase,
-};
+export const SITE_CONFIG = {
+  name: 'Ridz Coder',
+  title: 'Ridz Coder — Developer Portfolio',
+  description: 'Full-stack developer portfolio. React, TypeScript, Node.js, and more.',
+  email: 'ridzcoder@gmail.com',
+  timezone: 'Africa/Kampala',
+} as const;
 
-interface TechStackIconProps {
-  iconName: string;
-  className?: string;
-}
+export const SOCIAL_LINKS: SocialLink[] = [
+  { name: 'GitHub', url: 'https://github.com/ridzcoder', icon: 'github' },
+  { name: 'Telegram', url: 'https://t.me/ridzcoder', icon: 'send' },
+  { name: 'WhatsApp', url: 'https://wa.me/+237678687593', icon: 'messageCircle' },
+];
 
-export function TechStackIcon({ iconName, className = "size-5" }: TechStackIconProps) {
-  const IconComponent = iconMap[iconName];
-  if (!IconComponent) return <span className="text-xl">🔧</span>;
-  return <IconComponent className={className} />;
-}
+// Tech stack with react-icons (Simple Icons) names
+export const TECH_STACK: TechItem[] = [
+  { name: 'React', icon: 'SiReact' },
+  { name: 'TypeScript', icon: 'SiTypescript' },
+  { name: 'Node.js', icon: 'SiNodedotjs' },
+  { name: 'Python', icon: 'SiPython' },
+  { name: 'Tailwind CSS', icon: 'SiTailwindcss' },
+  { name: 'MongoDB', icon: 'SiMongodb' },
+  { name: 'PostgreSQL', icon: 'SiPostgresql' },
+  { name: 'Git', icon: 'SiGit' },
+  { name: 'Docker', icon: 'SiDocker' },
+  { name: 'Firebase', icon: 'SiFirebase' },
+  { name: 'Next.js', icon: 'SiNextdotjs' },
+  { name: 'Supabase', icon: 'SiSupabase' },
+];
+
+export const TYPING_ROLES = [
+  'Developer',
+  'Designer',
+  'Creator',
+  'Innovator',
+  'Graphics Designer'
+];
+
+export const AUTH_CREDENTIALS = {
+  email: 'ridzcoder@gmail.com',
+  password: 'Ridzcoder@19',
+} as const;
+
+export const NAV_SECTIONS = [
+  { label: 'Home', href: '#home' },
+  { label: 'Tech Stack', href: '#tech' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+] as const;
