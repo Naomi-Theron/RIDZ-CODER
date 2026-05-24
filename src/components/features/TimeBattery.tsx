@@ -16,21 +16,18 @@ export default function TimeBattery() {
         : BatteryLow;
 
   return (
-    <div
-      className="glass-card rounded-xl mx-auto max-w-xs px-5 py-3 flex items-center justify-between gap-4 animate-fade-in-up"
-      style={{ animationDelay: '0.25s' }}
-    >
-      <div className="flex items-center gap-2">
-        <Clock className="size-4 text-primary" />
-        <div>
-          <p className="text-sm font-mono tabular-nums text-foreground">{time}</p>
-          <p className="text-xs text-muted-foreground">{date} • EAT</p>
+    <div className="glass-card rounded-lg mx-auto max-w-xs px-3 py-1.5 flex items-center justify-between gap-2 animate-fade-in-up">
+      <div className="flex items-center gap-1.5">
+        <Clock className="size-3 text-primary" />
+        <div className="leading-tight">
+          <p className="text-xs font-mono tabular-nums text-foreground">{time}</p>
+          <p className="text-[10px] text-muted-foreground">{date} • EAT</p>
         </div>
       </div>
 
-      <div className="flex items-center gap-1.5">
-        <BatteryIcon className={`size-4 ${batteryColor}`} />
-        <span className={`text-sm font-mono tabular-nums ${batteryColor}`}>
+      <div className="flex items-center gap-1">
+        <BatteryIcon className={`size-3 ${batteryColor}`} />
+        <span className={`text-xs font-mono tabular-nums ${batteryColor}`}>
           {battery}%
         </span>
       </div>
