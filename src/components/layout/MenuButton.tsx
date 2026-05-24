@@ -28,6 +28,16 @@ export default function MenuButton() {
 
   return (
     <>
+      {/* Logo / Site Name - only show on home page */}
+      {isHome && (
+        <div className="fixed top-5 left-5 z-50">
+          <span className="text-lg font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent drop-shadow-lg">
+            Ridz Coder
+          </span>
+        </div>
+      )}
+
+      {/* Hamburger menu button */}
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? 'Close menu' : 'Open menu'}
