@@ -16,7 +16,6 @@ export default function Home() {
       <main className="relative z-10 max-w-xl mx-auto pb-4">
         <ProfileSection />
         <SocialLinks />
-        <TimeBattery />
         <StatsSection />
         <TechStackSection />
         <ProjectsSection />
