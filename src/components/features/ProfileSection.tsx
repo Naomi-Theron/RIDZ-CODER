@@ -41,7 +41,7 @@ export default function ProfileSection() {
       <div className="max-w-2xl mt-6 text-center space-y-3">
         <p className="text-muted-foreground text-sm leading-relaxed">
           I'm a self-learned developer from Uganda. My Full Government name is 
-          <span className="text-foreground font-medium">M Solomon</span>,
+            <span className="text-foreground font-medium">M Solomon</span>,
           But Commonly known as Ridz Coder A Username I created from My Girlfriends Name <span className="text-foreground font-medium">K Faridah</span>she pushes me beyond my limits.
         </p>
         <p className="text-muted-foreground text-sm leading-relaxed">
