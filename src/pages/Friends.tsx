@@ -5,31 +5,37 @@ import Footer from '@/components/layout/Footer'; // adjust path if needed
 
 const friendsList = [
   {
-    name: 'Jinx',
-    role: 'Creative Artist & Gamer',
+    name: 'Jinx Bae',
+    role: 'Creative TikTokee& Gamer',
     avatar: 'https://randomuser.me/api/portraits/women/1.jpg', // replace with actual image
-    bio: 'Not into tech, but amazing at digital art and storytelling. Jinx brings creativity to every conversation.',
+    bio: 'Not into tech, but amazing at comfort and storytelling. Jinx brings creativity to every conversation.',
     icon: <Gamepad2 className="size-4" />,
-    interests: 'Art, gaming, music',
+    interests: 'Tiktok, gaming, music',
   },
   {
-    name: 'Kevin',
+    name: 'Kevin Tech',
     role: 'Tech Enthusiast & Developer',
     avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
-    github: 'https://github.com/kevin',
-    twitter: 'https://twitter.com/kevin',
+    github: 'https://github.com/kevintech-hub',
     bio: 'Full‑stack developer, open‑source contributor, and cloud architect. Always debugging something.',
     icon: <Code className="size-4" />,
-    interests: 'React, Go, Kubernetes',
+    interests: 'React, JavaScript, Typescript',
   },
   {
     name: 'Marion',
-    role: 'Marketing & Strategy',
+    role: 'Overthinking & Strategy',
     avatar: 'https://randomuser.me/api/portraits/women/3.jpg',
-    linkedin: 'https://linkedin.com/in/marion',
-    bio: 'Not a coder, but a business strategist who helps tech people communicate value. Loves hiking and coffee.',
+    bio: 'Not a coder, but a business lady and a single mother of one and always admirable. Loves hiking and coffee.',
     icon: <Briefcase className="size-4" />,
     interests: 'Marketing, leadership, nature',
+  },
+  {
+    name: 'sarah Feffe',
+    role: 'My OG & Student of Arts',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    bio: 'Always There when you need her, Funny girl first a nice voice but very talkative when with a trusted person.',
+    icon: <Plane className="size-4" />,
+    interests: 'Art, Tiktok, traveling',
   },
 ];
 
