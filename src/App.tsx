@@ -24,7 +24,7 @@ function LoadingFallback() {
   useEffect(() => {
     const interval = setInterval(() => {
       setMessageIndex((prev) => (prev + 1) % bootMessages.length);
-    }, 800);
+    }, 1500);
     return () => clearInterval(interval);
   }, []);
 
