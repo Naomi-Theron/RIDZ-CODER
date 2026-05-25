@@ -17,7 +17,7 @@ const friendsList = [
   {
     name: 'Kevin Tech',
     role: 'Tech Enthusiast & Developer',
-    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    avatar: 'https://files.catbox.moe/pynavf.png',
     github: 'https://github.com/kevintech-hub',
     bio: 'Full‑stack developer, open‑source contributor, and cloud architect. Always debugging something.',
     icon: <Code className="size-4" />,
@@ -26,7 +26,7 @@ const friendsList = [
   {
     name: 'Marion',
     role: 'Overthinking & Strategy',
-    avatar: 'https://randomuser.me/api/portraits/women/3.jpg',
+    avatar: 'https://files.catbox.moe/ifhwop.png',
     bio: 'Not a coder, but a business lady and a single mother of one and always admirable. Loves hiking and coffee.',
     icon: <Briefcase className="size-4" />,
     interests: 'Marketing, leadership, nature',
