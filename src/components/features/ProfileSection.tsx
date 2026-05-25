@@ -1,5 +1,5 @@
 import { Download } from 'lucide-react';
-import avatarImg from '@/assets/avatar.jpg';
+import avatarImg from '@/assets/avater.jpg';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
 import { TYPING_ROLES } from '@/constants/config';
 
@@ -40,9 +40,9 @@ export default function ProfileSection() {
       {/* Bio Section */}
       <div className="max-w-2xl mt-6 text-center space-y-3">
         <p className="text-muted-foreground text-sm leading-relaxed">
-          I'm a self-learned developer from Kenya. I'm still a student, currently in third year
-          at <span className="text-foreground font-medium">Moi University - Eldoret</span>,
-          pursuing a Bachelor of Business Management in the School of Business and Economics.
+          I'm a self-learned developer from Uganda. My Full Government name is 
+          at <span className="text-foreground font-medium">M Solomon</span>,
+          But Commonly known as Ridz Coder A Username I created from My Girlfriends Name <span className="text-foreground font-medium">K Faridah</span>I love that soul so much it pushes me beyond my limits.
         </p>
         <p className="text-muted-foreground text-sm leading-relaxed">
           I have a passion for web development, app and software development, backend development
