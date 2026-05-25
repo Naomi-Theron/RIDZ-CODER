@@ -1,4 +1,6 @@
-import { Github, Twitter, Linkedin, MessageCircle, Users, Code, Heart, Gamepad2, Briefcase } from 'lucide-react';
+import { 
+  Github, Twitter, Linkedin, MessageCircle, Users, Code, Heart, Gamepad2, Briefcase, Plane 
+} from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
 import Footer from '@/components/layout/Footer'; // adjust path if needed
