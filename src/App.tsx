@@ -8,6 +8,7 @@ const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const Friends = lazy(() => import('@/pages/Friends'));
 const Certifications = lazy(() => import('@/pages/Certifications'));
+const Donation = lazy(() => import('@/pages/Donation'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
 function LoadingFallback() {
@@ -85,7 +86,8 @@ export default function App() {
         <Route path="/friends" element={<Friends />} />
         
         <Route path="/certifications" element={<Certifications />} />
-        
+      
+<Route path="/donate" element={<Donation />} /> 
         {/* Catch‑all route – must be last */}
         <Route path="*" element={<NotFound />} />
       </Routes>
