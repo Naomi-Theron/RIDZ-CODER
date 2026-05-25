@@ -51,7 +51,7 @@ export default function Friends() {
         <div className="text-center mb-10 animate-fade-in-up">
           <Users className="size-12 text-primary mx-auto mb-3" />
           <h1 className="text-3xl font-bold text-foreground">My Friends & Collaborators</h1>
-          <p className="text-muted-foreground mt-2">A mix of tech minds and creative souls.</p>
+          <p className="text-muted-foreground mt-2">A mix of tech minds and creative souls,If you Don't see your self go Die.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
