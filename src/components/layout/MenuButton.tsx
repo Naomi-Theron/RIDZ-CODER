@@ -28,31 +28,27 @@ export default function MenuButton() {
 
   return (
     <>
-      {/* Top bar that connects logo and menu button */}
+      {/* Logo with background - only show on home page */}
       {isHome && (
-        <div className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl">
-          <div className="glass-card rounded-2xl px-4 py-2 flex items-center justify-between">
-            {/* Left: Logo */}
-            <div className="flex items-center gap-2">
-              <Code className="size-4 text-primary" />
-              <span className="text-sm font-extrabold tracking-wide text-foreground">
-                RIDZ CODER
-              </span>
-            </div>
-
-            {/* Right: Hamburger menu button */}
-            <button
-              onClick={() => setOpen(!open)}
-              aria-label={open ? 'Close menu' : 'Open menu'}
-              className="glass-card size-9 rounded-full flex items-center justify-center text-foreground transition-colors hover:text-primary"
-            >
-              {open ? <X className="size-4" /> : <Menu className="size-4" />}
-            </button>
+        <div className="fixed top-5 left-5 z-50">
+          <div className="glass-card inline-flex items-center gap-2 px-3 py-1.5 rounded-full">
+            <Code className="size-4 text-primary" />
+            <span className="text-sm font-extrabold tracking-wide text-foreground">
+              RIDZ CODER
+            </span>
           </div>
         </div>
       )}
 
-      {/* Keep the existing drawer logic (unchanged) */}
+      {/* Hamburger menu button */}
+      <button
+        onClick={() => setOpen(!open)}
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        className="fixed top-5 right-5 z-50 glass-card size-11 rounded-full flex items-center justify-center text-foreground transition-colors hover:text-primary"
+      >
+        {open ? <X className="size-5" /> : <Menu className="size-5" />}
+      </button>
+
       <AnimatePresence>
         {open && (
           <>
@@ -100,18 +96,6 @@ export default function MenuButton() {
                   Home
                 </Link>
               )}
-// Inside MenuButton, replace the map section:
-{ALL_ROUTES.map((route) => (
-  <Link
-    key={route.label}
-    to={route.href}
-    onClick={() => setOpen(false)}
-    className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-white/5"
-  >
-    {/* optional icon mapping */}
-    {route.label}
-  </Link>
-))}
 
               <div className="border-t border-border/40 my-3" />
 
