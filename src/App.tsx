@@ -24,7 +24,7 @@ function LoadingFallback() {
   useEffect(() => {
     const interval = setInterval(() => {
       setMessageIndex((prev) => (prev + 1) % bootMessages.length);
-    }, 1500);
+    }, 1500); // slower: 1.5 seconds per message
     return () => clearInterval(interval);
   }, []);
 
@@ -47,9 +47,9 @@ function LoadingFallback() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-64 rounded-full bg-primary/5 blur-3xl animate-pulse" />
 
       <div className="relative z-10 flex flex-col items-center gap-4">
-        {/* Spinner */}
+        {/* Spinner - slower animation */}
         <div className="relative">
-          <div className="size-12 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+          <div className="size-12 rounded-full border-2 border-primary/30 border-t-primary animate-[spin_2s_linear_infinite]" />
           <div className="absolute inset-0 size-12 rounded-full border-2 border-primary/10 animate-ping" />
         </div>
 
