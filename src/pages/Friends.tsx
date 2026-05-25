@@ -7,7 +7,7 @@ const friendsList = [
   {
     name: 'Jinx Bae',
     role: 'Creative TikTokee& Gamer',
-    avatar: 'https://randomuser.me/api/portraits/women/1.jpg', // replace with actual image
+    avatar: 'https://files.catbox.moe/6ptig7.png', // replace with actual image
     bio: 'Not into tech, but amazing at comfort and storytelling. Jinx brings creativity to every conversation.',
     icon: <Gamepad2 className="size-4" />,
     interests: 'Tiktok, gaming, music',
@@ -32,7 +32,7 @@ const friendsList = [
   {
     name: 'sarah Feffe',
     role: 'My OG & Student of Arts',
-    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    avatar: 'https://files.catbox.moe/0wbapt.png',
     bio: 'Always There when you need her, Funny girl first a nice voice but very talkative when with a trusted person.',
     icon: <Plane className="size-4" />,
     interests: 'Art, Tiktok, traveling',
