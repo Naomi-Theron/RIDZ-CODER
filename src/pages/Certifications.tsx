@@ -1,6 +1,7 @@
 import { Award, CheckCircle2 } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
+import Footer from '@/components/layout/Footer';
 
 const certifications = [
   { name: 'JavaScript Algorithms and Data Structures', issuer: 'freeCodeCamp', year: 2022, credential: 'https://freecodecamp.org/cert/...' },
@@ -34,6 +35,7 @@ export default function Certifications() {
           ))}
         </div>
       </div>
+<Footer />
     </div>
   );
 }
