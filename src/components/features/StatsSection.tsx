@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Code2, FolderGit2, Calendar, Coffee, Sparkles } from 'lucide-react';
 import { useCountUp } from '@/hooks/useCountUp';
 import { useProjectStore } from '@/stores/projectStore';
@@ -30,6 +31,25 @@ function StatCard({ icon, value, suffix = '', label, accentColor = 'text-primary
 
 export default function StatsSection() {
   const projects = useProjectStore((s) => s.projects);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // only animate once
+        }
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -100px 0px' }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
 
   const uniqueTechs = new Set(projects.flatMap((p) => p.techs));
   const currentYear = new Date().getFullYear();
@@ -37,30 +57,55 @@ export default function StatsSection() {
   const yearsActive = currentYear - startYear;
 
   return (
-    <section className="px-4 pb-6 animate-fade-in-up">
+    <section ref={sectionRef} className="px-4 pb-6">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        <StatCard
-          icon={<FolderGit2 className="size-3.5" />}
-          value={projects.length}
-          label="Projects"
-        />
-        <StatCard
-          icon={<Code2 className="size-3.5" />}
-          value={uniqueTechs.size}
-          label="Technologies"
-        />
-        <StatCard
-          icon={<Calendar className="size-3.5" />}
-          value={yearsActive}
-          suffix="+"
-          label="Years Active"
-        />
-        <StatCard
-          icon={<Coffee className="size-3.5" />}
-          value={1240}
-          suffix="+"
-          label="Commits"
-        />
+        {/* Each card gets a class that triggers slide‑in from right when parent is visible */}
+        <div
+          className={`transition-all duration-700 ease-out ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}
+        >
+          <StatCard
+            icon={<FolderGit2 className="size-3.5" />}
+            value={projects.length}
+            label="Projects"
+          />
+        </div>
+        <div
+          className={`transition-all duration-700 ease-out delay-100 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}
+        >
+          <StatCard
+            icon={<Code2 className="size-3.5" />}
+            value={uniqueTechs.size}
+            label="Technologies"
+          />
+        </div>
+        <div
+          className={`transition-all duration-700 ease-out delay-200 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}
+        >
+          <StatCard
+            icon={<Calendar className="size-3.5" />}
+            value={yearsActive}
+            suffix="+"
+            label="Years Active"
+          />
+        </div>
+        <div
+          className={`transition-all duration-700 ease-out delay-300 ${
+            isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+          }`}
+        >
+          <StatCard
+            icon={<Coffee className="size-3.5" />}
+            value={1240}
+            suffix="+"
+            label="Commits"
+          />
+        </div>
       </div>
     </section>
   );
