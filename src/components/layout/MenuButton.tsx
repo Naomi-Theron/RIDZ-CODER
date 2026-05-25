@@ -1,15 +1,22 @@
 import { useState } from 'react';
-import { Menu, X, Home, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code } from 'lucide-react';
+import { 
+  Menu, X, Home, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code,
+  Users, GraduationCap, Award
+} from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAuthStore } from '@/stores/authStore';
-import { NAV_SECTIONS } from '@/constants/config';
+import { ALL_ROUTES } from '@/constants/config';
 
-const SECTION_ICONS: Record<string, React.ElementType> = {
-  Home,
+// Map route labels to icons
+const ROUTE_ICONS: Record<string, React.ElementType> = {
+  Home: Home,
   'Tech Stack': Code2,
   Projects: FolderKanban,
   Contact: Mail,
+  Friends: Users,
+  Education: GraduationCap,
+  Certifications: Award,
 };
 
 export default function MenuButton() {
@@ -18,17 +25,20 @@ export default function MenuButton() {
   const location = useLocation();
   const isHome = location.pathname === '/';
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, isAnchor: boolean) => {
     setOpen(false);
-    if (isHome && href.startsWith('#')) {
-      const el = document.querySelector(href);
-      el?.scrollIntoView({ behavior: 'smooth' });
+    if (isHome && isAnchor) {
+      const hash = href.split('#')[1];
+      if (hash) {
+        const el = document.querySelector(`#${hash}`);
+        el?.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
   return (
     <>
-      {/* Logo with background - only show on home page */}
+      {/* Logo - only show on home page */}
       {isHome && (
         <div className="fixed top-5 left-5 z-50">
           <div className="glass-card inline-flex items-center gap-2 px-3 py-1.5 rounded-full">
@@ -40,7 +50,7 @@ export default function MenuButton() {
         </div>
       )}
 
-      {/* Hamburger menu button */}
+      {/* Hamburger button */}
       <button
         onClick={() => setOpen(!open)}
         aria-label={open ? 'Close menu' : 'Open menu'}
@@ -52,17 +62,13 @@ export default function MenuButton() {
       <AnimatePresence>
         {open && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
               onClick={() => setOpen(false)}
             />
-
-            {/* Drawer */}
             <motion.nav
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -71,31 +77,21 @@ export default function MenuButton() {
               className="fixed top-0 right-0 h-full w-72 glass-card z-40 p-6 pt-20 flex flex-col gap-1"
               style={{ background: 'hsla(0, 0%, 8%, 0.95)', backdropFilter: 'blur(20px)' }}
             >
-              {isHome &&
-                NAV_SECTIONS.map((sec) => {
-                  const Icon = SECTION_ICONS[sec.label] || Home;
-                  return (
-                    <button
-                      key={sec.label}
-                      onClick={() => handleNavClick(sec.href)}
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-white/5"
-                    >
-                      <Icon className="size-4" />
-                      {sec.label}
-                    </button>
-                  );
-                })}
-
-              {!isHome && (
-                <Link
-                  to="/"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-white/5"
-                >
-                  <Home className="size-4" />
-                  Home
-                </Link>
-              )}
+              {/* All routes from config */}
+              {ALL_ROUTES.map((route) => {
+                const Icon = ROUTE_ICONS[route.label];
+                return (
+                  <Link
+                    key={route.label}
+                    to={route.href}
+                    onClick={() => handleNavClick(route.href, route.isAnchor)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-white/5"
+                  >
+                    {Icon && <Icon className="size-4" />}
+                    {route.label}
+                  </Link>
+                );
+              })}
 
               <div className="border-t border-border/40 my-3" />
 
