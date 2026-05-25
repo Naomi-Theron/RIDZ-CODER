@@ -68,6 +68,7 @@ export default function App() {
         <Route path="/friends" element={<Friends />} />
         <Route path="/education" element={<Education />} />
         <Route path="/certifications" element={<Certifications />} />
+<Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );
