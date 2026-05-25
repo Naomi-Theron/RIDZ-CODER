@@ -12,7 +12,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
   { name: 'GitHub', url: 'https://github.com/ridzcoder', icon: 'github' },
   { name: 'Telegram', url: 'https://t.me/ridzcoder', icon: 'send' },
   { name: 'WhatsApp', url: 'https://wa.me/+237678687593', icon: 'messageCircle' },
-  // New social links
   { name: 'Twitter (X)', url: 'https://twitter.com/ridzcoder', icon: 'twitter' },
   { name: 'LinkedIn', url: 'https://linkedin.com/in/ridzcoder', icon: 'linkedin' },
   { name: 'Instagram', url: 'https://instagram.com/ridzcoder', icon: 'instagram' },
@@ -54,5 +53,6 @@ export const ALL_ROUTES = [
   { label: 'Projects', href: '/#projects', isAnchor: true },
   { label: 'Contact', href: '/#contact', isAnchor: true },
   { label: 'Friends', href: '/friends', isAnchor: false },
-
+  { label: 'Education', href: '/education', isAnchor: false },        // ✅ added
+  { label: 'Certifications', href: '/certifications', isAnchor: false }, // ✅ added
 ] as const;
