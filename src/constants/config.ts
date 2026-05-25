@@ -42,8 +42,17 @@ export const AUTH_CREDENTIALS = {
 } as const;
 
 export const NAV_SECTIONS = [
-  { label: 'Home', href: '#home' },
-  { label: 'Tech Stack', href: '#tech' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '#home', path: '/' },
+  { label: 'Tech Stack', href: '#tech', path: '/' },
+  { label: 'Projects', href: '#projects', path: '/' },
+  { label: 'Contact', href: '#contact', path: '/' },
+] as const;
+
+export const ALL_ROUTES = [
+  { label: 'Home', href: '/', isAnchor: false },
+  { label: 'Tech Stack', href: '/#tech', isAnchor: true },
+  { label: 'Projects', href: '/#projects', isAnchor: true },
+  { label: 'Contact', href: '/#contact', isAnchor: true },
+  { label: 'Friends', href: '/friends', isAnchor: false },
+
 ] as const;
