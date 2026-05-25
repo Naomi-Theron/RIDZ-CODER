@@ -100,6 +100,18 @@ export default function MenuButton() {
                   Home
                 </Link>
               )}
+// Inside MenuButton, replace the map section:
+{ALL_ROUTES.map((route) => (
+  <Link
+    key={route.label}
+    to={route.href}
+    onClick={() => setOpen(false)}
+    className="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-white/5"
+  >
+    {/* optional icon mapping */}
+    {route.label}
+  </Link>
+))}
 
               <div className="border-t border-border/40 my-3" />
 
