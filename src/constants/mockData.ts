@@ -32,7 +32,7 @@ export const DEFAULT_PROJECTS: Project[] = [
     url: 'https://www.npmjs.com/package/riftcore',
     buttonText: 'View On NPM',
     imageUrl: 'https://files.catbox.moe/t1ae76.jpg?w=600&h=375&fit=crop',
-    sortOrder: 1,
+    sortOrder: 3,
     createdAt: '2024-01-15',
     updatedAt: '2024-01-15',
   },
