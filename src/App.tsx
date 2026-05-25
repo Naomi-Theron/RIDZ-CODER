@@ -2,8 +2,6 @@ import { lazy, Suspense, useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import ProtectedRoute from '@/components/features/ProtectedRoute';
 const Friends = lazy(() => import('@/pages/Friends'));
-const Education = lazy(() => import('@/pages/Education'));
-const Certifications = lazy(() => import('@/pages/Certifications'));
 
 const Home = lazy(() => import('@/pages/Home'));
 const Login = lazy(() => import('@/pages/Login'));
@@ -75,8 +73,6 @@ export default function App() {
     <Suspense fallback={<LoadingFallback />}>
       <Routes>
 <Route path="/friends" element={<Friends />} />
-<Route path="/education" element={<Education />} />
-<Route path="/certifications" element={<Certifications />} />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/reset-password" element={<ResetPassword />} />
