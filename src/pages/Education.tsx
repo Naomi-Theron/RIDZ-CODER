@@ -1,6 +1,7 @@
 import { GraduationCap, BookOpen, Award, Calendar, MapPin } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
+import Footer from '@/components/layout/Footer';
 
 const educationData = [
   {
@@ -70,6 +71,7 @@ export default function Education() {
           </div>
         </div>
       </div>
+<Footer />
     </div>
   );
 }
