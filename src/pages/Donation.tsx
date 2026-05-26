@@ -105,150 +105,47 @@ export default function Donation() {
     }
   };
 
-  // MiniPay send handler
-  const handleCryptoDonation = () => {
-    if (!isConnected) {
-      toast.error('Please connect your MiniPay wallet first');
-      return;
-    }
-    if (!cryptoAmount || parseFloat(cryptoAmount) <= 0) {
-      toast.error('Enter a valid amount in cUSD');
-      return;
-    }
-    const walletAddress = process.env.NEXT_PUBLIC_DONATION_WALLET || '0xYourWalletAddressHere';
-    sendTransaction(
-      { to: walletAddress, value: parseEther(cryptoAmount) },
-      {
-        onSuccess: () => {
-          toast.success(`Donation of ${cryptoAmount} cUSD sent! Thank you 🙌`);
-          setCryptoAmount('');
-        },
-        onError: (error) => toast.error(`Transaction failed: ${error.message}`),
-      }
-    );
-  };
+ {/* MiniPay QR Code Column – using your static QR code image */}
+<div className="glass-card rounded-2xl p-6 text-center">
+  <div className="flex items-center justify-center gap-2 mb-4">
+    <Wallet className="size-6 text-primary" />
+    <h2 className="text-xl font-bold text-foreground">MiniPay (cUSD)</h2>
+  </div>
 
-  return (
-    <div className="relative min-h-screen">
-      <Scene3D />
-      <MenuButton />
+  <div className="flex flex-col items-center space-y-4">
+    {/* Your static QR code image */}
+    <div className="bg-white p-3 rounded-xl inline-block">
+      <img 
+        src="https://files.catbox.moe/9irij4.png" 
+        alt="MiniPay QR Code"
+        className="w-40 h-40 object-contain"
+      />
+    </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 py-20">
-        <div className="text-center mb-10 animate-fade-in-up">
-          <Heart className="size-12 text-primary mx-auto mb-3 fill-primary/20" />
-          <h1 className="text-3xl font-bold text-foreground">Support My Work</h1>
-          <p className="text-muted-foreground mt-2 max-w-md mx-auto">
-            Choose your country and donate via mobile money or cryptocurrency.
-          </p>
-        </div>
-
-        {/* Two columns */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Mobile Money Column */}
-          <div className="glass-card rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Smartphone className="size-6 text-primary" />
-              <h2 className="text-xl font-bold text-foreground">Mobile Money</h2>
-            </div>
-            <form onSubmit={handleMobileDonation} className="space-y-4">
-              <div>
-                <label className="text-sm text-muted-foreground block mb-1">Country / Provider</label>
-                <select
-                  value={selectedCountry.code}
-                  onChange={(e) => {
-                    const country = countries.find(c => c.code === e.target.value);
-                    if (country) setSelectedCountry(country);
-                  }}
-                  className="w-full bg-background/50 border border-border/60 rounded-lg px-3 py-2 text-foreground"
-                >
-                  {countries.map(c => (
-                    <option key={c.code} value={c.code}>
-                      {c.name} – {c.provider}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className="text-sm text-muted-foreground block mb-1">Phone Number</label>
-                <div className="flex">
-                  <span className="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-border/60 bg-background/50 text-muted-foreground">
-                    +{selectedCountry.prefix}
-                  </span>
-                  <input
-                    type="tel"
-                    value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
-                    placeholder={`${selectedCountry.phoneLength} digit number`}
-                    className="flex-1 bg-background/50 border border-border/60 rounded-r-lg px-3 py-2 text-foreground"
-                    maxLength={selectedCountry.phoneLength}
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="text-sm text-muted-foreground block mb-1">Amount ({selectedCountry.currency})</label>
-                <input
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="e.g., 100"
-                  className="w-full bg-background/50 border border-border/60 rounded-lg px-3 py-2 text-foreground"
-                  step="any"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                disabled={loadingProvider}
-                className="w-full bg-primary text-primary-foreground font-semibold py-2 rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2"
-              >
-                {loadingProvider ? <Loader2 className="size-4 animate-spin" /> : <Gift className="size-4" />}
-                {loadingProvider ? 'Sending prompt...' : `Donate with ${selectedCountry.provider}`}
-              </button>
-            </form>
-          </div>
-
-          {/* MiniPay Column */}
-          <div className="glass-card rounded-2xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Wallet className="size-6 text-primary" />
-              <h2 className="text-xl font-bold text-foreground">MiniPay (cUSD)</h2>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <label className="text-sm text-muted-foreground block mb-1">Wallet Status</label>
-                <div className="text-sm font-mono bg-background/50 p-2 rounded-lg break-all">
-                  {isConnected ? address : '⚠️ Not connected – open MiniPay browser'}
-                </div>
-              </div>
-              <div>
-                <label className="text-sm text-muted-foreground block mb-1">Amount (cUSD)</label>
-                <input
-                  type="number"
-                  value={cryptoAmount}
-                  onChange={(e) => setCryptoAmount(e.target.value)}
-                  placeholder="e.g., 5"
-                  className="w-full bg-background/50 border border-border/60 rounded-lg px-3 py-2 text-foreground"
-                  step="any"
-                />
-              </div>
-              <button
-                onClick={handleCryptoDonation}
-                disabled={!isConnected || isSendingTx}
-                className="w-full bg-primary text-primary-foreground font-semibold py-2 rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2"
-              >
-                {isSendingTx ? <Loader2 className="size-4 animate-spin" /> : <Coffee className="size-4" />}
-                {isSendingTx ? 'Confirming...' : `Donate ${cryptoAmount || '0'} cUSD`}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-8 text-center text-xs text-muted-foreground">
-          <p>🔹 MiniPay works inside the MiniPay browser or any Celo‑compatible wallet.</p>
-          <p>🔹 Mobile money payments are in sandbox mode for testing – go‑live requires approved accounts.</p>
-        </div>
+    {/* Wallet Address with Copy Button */}
+    <div className="w-full">
+      <div className="flex items-center justify-between gap-2 bg-background/50 p-2 rounded-lg">
+        <code className="text-xs font-mono text-foreground truncate">{walletAddress}</code>
+        <button
+          onClick={copyAddress}
+          className="p-1 hover:bg-primary/20 rounded transition-colors"
+          aria-label="Copy address"
+        >
+          {copied ? <Check className="size-4 text-primary" /> : <Copy className="size-4 text-muted-foreground" />}
+        </button>
       </div>
+    </div>
+
+    {/* MiniPay environment hint */}
+    <div className="text-xs text-muted-foreground space-y-1">
+      <p>📱 Scan with MiniPay camera or copy address</p>
+      <p className="text-primary/80">Send any amount – every contribution helps 🙌</p>
+      {!isConnected && (
+        <p className="text-yellow-500/80">⚠️ Open this page inside MiniPay browser for best experience</p>
+      )}
+    </div>
+  </div>
+</div>
       <Footer />
     </div>
   );
