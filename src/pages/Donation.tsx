@@ -220,16 +220,11 @@ export default function Donation() {
 
               {/* Hint */}
               <div className="text-xs text-muted-foreground space-y-1">
-                <p>📱 Scan with MiniPay camera or copy address</p>
+                <p>📱 Download minipay from play store & Apple Store Scan with MiniPay camera or copy address also you can send using the third bottom button on the app</p>
                 <p className="text-primary/80">Send any amount – every contribution helps 🙌</p>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="mt-8 text-center text-xs text-muted-foreground">
-          <p>🔹 MiniPay works inside the MiniPay browser or any Celo‑compatible wallet.</p>
-          <p>🔹 Mobile money payments are in sandbox mode for testing – go‑live requires approved accounts.</p>
         </div>
       </div>
       <Footer />
