@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Heart, Coffee, Gift, Smartphone, Wallet, Loader2, Copy, Check } from 'lucide-react';
+import { useState } from 'react';
+import { Heart, Gift, Smartphone, Wallet, Copy, Check } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
 import Footer from '@/components/layout/Footer';
-import { useAccount, useConnect } from 'wagmi';
 import { toast } from 'sonner';
 
 // Country configuration for mobile money
@@ -24,21 +23,10 @@ export default function Donation() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [amount, setAmount] = useState('');
   const [loadingProvider, setLoadingProvider] = useState(false);
-
-  // MiniPay wallet connection (just for environment detection)
-  const { address, isConnected } = useAccount();
-  const { connect } = useConnect();
   const [copied, setCopied] = useState(false);
 
   // Your wallet address (replace with your actual MiniPay address)
-  const walletAddress = process.env.NEXT_PUBLIC_DONATION_WALLET || '0xYourWalletAddressHere';
-
-  // Auto-connect to MiniPay if available
-  useEffect(() => {
-    if (!isConnected && typeof window !== 'undefined' && (window as any).ethereum) {
-      connect({ connector: (window as any).ethereum });
-    }
-  }, [connect, isConnected]);
+  const walletAddress = import.meta.env.VITE_DONATION_WALLET || '0xYourWalletAddressHere';
 
   // Copy address to clipboard
   const copyAddress = () => {
@@ -185,13 +173,17 @@ export default function Donation() {
                 disabled={loadingProvider}
                 className="w-full bg-primary text-primary-foreground font-semibold py-2 rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2"
               >
-                {loadingProvider ? <Loader2 className="size-4 animate-spin" /> : <Gift className="size-4" />}
+                {loadingProvider ? (
+                  <div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  <Gift className="size-4" />
+                )}
                 {loadingProvider ? 'Sending prompt...' : `Donate with ${selectedCountry.provider}`}
               </button>
             </form>
           </div>
 
-          {/* MiniPay Column with Static QR Code Image */}
+          {/* MiniPay Column – No Wagmi, just QR + address */}
           <div className="glass-card rounded-2xl p-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Wallet className="size-6 text-primary" />
@@ -199,12 +191,16 @@ export default function Donation() {
             </div>
 
             <div className="flex flex-col items-center space-y-4">
-              {/* Your static QR code image */}
+              {/* Static QR code image */}
               <div className="bg-white p-3 rounded-xl inline-block">
                 <img 
                   src="https://files.catbox.moe/9irij4.png" 
                   alt="MiniPay QR Code"
                   className="w-40 h-40 object-contain"
+                  onError={(e) => {
+                    // Fallback if image fails to load
+                    e.currentTarget.src = 'https://placehold.co/160x160/1e3a8a/white?text=QR+Code';
+                  }}
                 />
               </div>
 
@@ -222,13 +218,10 @@ export default function Donation() {
                 </div>
               </div>
 
-              {/* MiniPay environment hint */}
+              {/* Hint */}
               <div className="text-xs text-muted-foreground space-y-1">
                 <p>📱 Scan with MiniPay camera or copy address</p>
                 <p className="text-primary/80">Send any amount – every contribution helps 🙌</p>
-                {!isConnected && (
-                  <p className="text-yellow-500/80">⚠️ Open this page inside MiniPay browser for best experience</p>
-                )}
               </div>
             </div>
           </div>
