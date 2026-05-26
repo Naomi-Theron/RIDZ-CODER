@@ -22,30 +22,22 @@ export default function ProfileSection() {
         </div>
       </div>
 
-      {/* Name with glass background - centered */}
-      <div className="mb-2">
-        <div className="glass-card inline-block px-6 py-2 rounded-full">
-          <h1 className="text-3xl font-bold text-foreground text-balance">
-            Ridz Coder
-          </h1>
-        </div>
-      </div>
-
-      {/* Typing effect */}
-      <div className="flex items-center gap-0.5 font-mono text-lg text-primary h-7">
+      {/* Typing effect (moved up, no name heading) */}
+      <div className="flex items-center gap-0.5 font-mono text-lg text-primary h-7 mb-2">
         <span>{typedRole}</span>
         <span className="animate-blink text-primary font-light">|</span>
       </div>
 
       {/* Bio Section */}
-      <div className="max-w-2xl mt-6 text-center space-y-3">
+      <div className="max-w-2xl mt-4 text-center space-y-3">
         <p className="text-muted-foreground text-sm leading-relaxed">
-          I'm a self-learned developer from Uganda. My Full Government name is  
-            <span className="text-foreground font-medium">M Solomon</span>,
-          But Commonly known as Ridz Coder A Username I created from My Girlfriends Name <span className="text-foreground font-medium">K Faridah</span>,she pushes me beyond my limits.
+          I'm a self-learned developer from Uganda. My full government name is  
+          <span className="text-foreground font-medium"> M Solomon</span>,
+          But commonly known as Ridz Coder – a username I created from my girlfriend's name, 
+          <span className="text-foreground font-medium"> K Faridah</span>, who pushes me beyond my limits.
         </p>
         <p className="text-muted-foreground text-sm leading-relaxed">
-          I have a passion for web development, app and software development, backend development
+          I have a passion for web development, app and software development, backend development,
           and I love to learn new things. I'm also a tech enthusiast and I love to share my knowledge
           as well as collaborate with others.
         </p>
