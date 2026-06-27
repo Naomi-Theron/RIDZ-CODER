@@ -1,27 +1,23 @@
 import { useState } from 'react';
 import { 
   Menu, X, Home, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code,
-  Users, GraduationCap, Award, Heart, Terminal  // ← add Terminal
+  Users, GraduationCap, Award, Heart, Terminal, BookOpen, Gift, UserPlus
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAuthStore } from '@/stores/authStore';
 import { ALL_ROUTES } from '@/constants/config';
 
-
-
-
-
 const ROUTE_ICONS: Record<string, React.ElementType> = {
   Home: Home,
   'Tech Stack': Code2,
   Projects: FolderKanban,
   Contact: Mail,
-  Friends: Home,
-Skills: Terminal, // placeholder, add more as needed
-  Education: Home,
-  Certifications: Home,
-  Donate: Home,
+  Friends: Users,           // ✅ proper icon
+  Education: GraduationCap, // ✅ proper icon
+  Certifications: Award,    // ✅ proper icon
+  Donate: Heart,            // ✅ proper icon
+  Skills: Terminal,         // ✅ proper icon
 };
 
 export default function MenuButton() {
@@ -67,7 +63,7 @@ export default function MenuButton() {
         </div>
       </div>
 
-      {/* Drawer (unchanged) */}
+      {/* Drawer */}
       <AnimatePresence>
         {open && (
           <>
