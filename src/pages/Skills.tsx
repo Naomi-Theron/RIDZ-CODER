@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { 
   Cloud, Server, Database, Code, Terminal, GitBranch, 
-  Monitor, Docker, 
+  Monitor
 } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
@@ -34,7 +34,7 @@ const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'AWS / Azure', percentage: 85, icon: <Cloud className="size-4" />, color: 'text-orange-400' },
       { name: 'Vercel', percentage: 90, icon: <Monitor className="size-4" />, color: 'text-white' },
-      { name: 'Docker / K8s', percentage: 85, icon: <Docker className="size-4" />, color: 'text-blue-400' },
+      { name: 'Docker / K8s', percentage: 85, icon: <Server className="size-4" />, color: 'text-blue-400' },
       { name: 'CI/CD', percentage: 80, icon: <GitBranch className="size-4" />, color: 'text-purple-400' },
       { name: 'Terraform', percentage: 75, icon: <Server className="size-4" />, color: 'text-purple-400' },
     ]
