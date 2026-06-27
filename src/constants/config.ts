@@ -53,6 +53,8 @@ export const ALL_ROUTES = [
   { label: 'Projects', href: '/#projects', isAnchor: true },
   { label: 'Contact', href: '/#contact', isAnchor: true },
   { label: 'Friends', href: '/friends', isAnchor: false },
+  { label: 'Education', href: '/education', isAnchor: false },
+  { label: 'Certifications', href: '/certifications', isAnchor: false },
   { label: 'Donate', href: '/donate', isAnchor: false },
-  { label: 'Certifications', href: '/certifications', isAnchor: false }, // ✅ added
-] as const;
+  { label: 'Skills', href: '/skills', isAnchor: false }, // ✅ new
+];
