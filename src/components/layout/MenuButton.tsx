@@ -1,16 +1,24 @@
 import { useState } from 'react';
-import { Menu, X, Home, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code } from 'lucide-react';
+import { 
+  Menu, X, Home, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code,
+  Users, GraduationCap, Award, Heart, Terminal  // ← add Terminal
+} from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAuthStore } from '@/stores/authStore';
 import { ALL_ROUTES } from '@/constants/config';
+
+
+
+
 
 const ROUTE_ICONS: Record<string, React.ElementType> = {
   Home: Home,
   'Tech Stack': Code2,
   Projects: FolderKanban,
   Contact: Mail,
-  Friends: Home, // placeholder, add more as needed
+  Friends: Home,
+Skills: Terminal, // placeholder, add more as needed
   Education: Home,
   Certifications: Home,
   Donate: Home,
