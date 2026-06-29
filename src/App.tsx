@@ -7,7 +7,6 @@ const Login = lazy(() => import('@/pages/Login'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const Friends = lazy(() => import('@/pages/Friends'));
-const Skills = lazy(() => import('@/pages/Skills'));
 const Certifications = lazy(() => import('@/pages/Certifications'));
 const Donation = lazy(() => import('@/pages/Donation'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
@@ -30,7 +29,7 @@ export default function App() {
           }
         />
         <Route path="/friends" element={<Friends />} />
-        <Route path="/skills" element={<Skills />} />   
+    
         <Route path="/certifications" element={<Certifications />} />
         <Route path="/donate" element={<Donation />} /> 
         {/* Catch‑all route – must be last */}
