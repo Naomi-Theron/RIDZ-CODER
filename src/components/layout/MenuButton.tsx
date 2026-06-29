@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { 
   Menu, X, Home, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code,
-  Users, GraduationCap, Award, Heart, Terminal, BookOpen, Gift, UserPlus
+  Users, GraduationCap, Award, Heart, BookOpen, Gift, UserPlus
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -17,7 +17,6 @@ const ROUTE_ICONS: Record<string, React.ElementType> = {
   Education: GraduationCap, // ✅ proper icon
   Certifications: Award,    // ✅ proper icon
   Donate: Heart,            // ✅ proper icon
-  Skills: Terminal,         // ✅ proper icon
 };
 
 export default function MenuButton() {
