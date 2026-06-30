@@ -44,7 +44,7 @@ export const DEFAULT_PROJECTS: Project[] = [
     techs: ['Baileys', 'Node.js', 'WebSocket', 'TypeScript'],
     url: 'https://npm.com/package/riftcore',
     buttonText: 'View Project',
-    imageUrl: 'https://files.catbox.moe/placeholder.png?w=600&h=375&fit=crop',
+    imageUrl: 'https://files.catbox.moe/vct5gi.png?w=600&h=375&fit=crop',
     sortOrder: 4,
     createdAt: '2024-06-01',
     updatedAt: '2024-06-01',
