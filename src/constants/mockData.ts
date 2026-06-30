@@ -25,7 +25,7 @@ export const DEFAULT_PROJECTS: Project[] = [
     createdAt: '2024-02-20',
     updatedAt: '2024-02-20',
   },
- {
+  {
     id: '3',
     title: 'NEMESIS ENC',
     description: 'High-level JavaScript obfuscation and encryption engine built to lock down your code, prevent tampering, and keep your logic out of the wrong hands.',
@@ -36,5 +36,17 @@ export const DEFAULT_PROJECTS: Project[] = [
     sortOrder: 3,
     createdAt: '2024-03-10',
     updatedAt: '2024-03-10',
+  },
+  {
+    id: '4',
+    title: 'RIFTCORE BAILEYS',
+    description: 'A robust multi-device WhatsApp automation framework built on Baileys, enabling seamless bot creation, message handling, and real-time interaction with high stability and custom pairing support.',
+    techs: ['Baileys', 'Node.js', 'WebSocket', 'TypeScript'],
+    url: 'https://npm.com/package/riftcore',
+    buttonText: 'View Project',
+    imageUrl: 'https://files.catbox.moe/placeholder.png?w=600&h=375&fit=crop',
+    sortOrder: 4,
+    createdAt: '2024-06-01',
+    updatedAt: '2024-06-01',
   }
 ];
