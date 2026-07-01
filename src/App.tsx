@@ -6,6 +6,7 @@ const Home = lazy(() => import('@/pages/Home'));
 const Login = lazy(() => import('@/pages/Login'));
 const ResetPassword = lazy(() => import('@/pages/ResetPassword'));
 const Dashboard = lazy(() => import('@/pages/Dashboard'));
+const Services = lazy(() => import('@/pages/Services'));
 const Friends = lazy(() => import('@/pages/Friends'));
 const Certifications = lazy(() => import('@/pages/Certifications'));
 const Donation = lazy(() => import('@/pages/Donation'));
@@ -80,6 +81,7 @@ export default function App() {
         
         <Route path="/certifications" element={<Certifications />} />
         <Route path="/donate" element={<Donation />} />
+<Route path="/services" element={<Services />} />
         {/* Catch‑all route – must be last */}
         <Route path="*" element={<NotFound />} />
       </Routes>
