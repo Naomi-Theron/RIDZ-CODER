@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { 
   Code, Smartphone, Database, Cloud, Shield, 
-  Package, Send, Coffee 
+  Package, Send, Coffee, MessageCircle   // ✅ Added MessageCircle
 } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
@@ -52,7 +52,7 @@ const services: Service[] = [
   {
     id: 'whatsapp-bot',
     title: 'WhatsApp Bot',
-    icon: <MessageCircle className="size-6" />,
+    icon: <MessageCircle className="size-6" />,   // ✅ Now defined
     description: 'Automated WhatsApp bots for business, customer service, and community management.',
     features: [
       'Multi-device support',
@@ -183,7 +183,6 @@ export default function Services() {
                   : 'hover:border-primary/30'
               }`}
             >
-              {/* Centered icon */}
               <div className="flex justify-center mb-3">
                 <div className="text-primary">{service.icon}</div>
               </div>
