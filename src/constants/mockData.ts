@@ -42,7 +42,7 @@ export const DEFAULT_PROJECTS: Project[] = [
     title: 'RIFTCORE BAILEYS',
     description: 'A robust multi-device WhatsApp automation framework built on Baileys, enabling seamless bot creation, message handling, and real-time interaction with high stability and custom pairing support.',
     techs: ['Baileys', 'Node.js', 'WebSocket', 'TypeScript'],
-    url: 'https://npm.com/package/riftcore',
+    url: 'https://www.npmjs.com/package/riftcore',
     buttonText: 'View Project',
     imageUrl: 'https://files.catbox.moe/vct5gi.png?w=600&h=375&fit=crop',
     sortOrder: 4,
