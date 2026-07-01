@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { 
-  Menu, X, Home, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code,
+  Menu, X, Home,Package, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code,
   Users, GraduationCap, Award, Heart, BookOpen, Gift, UserPlus
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -13,6 +13,7 @@ const ROUTE_ICONS: Record<string, React.ElementType> = {
   'Tech Stack': Code2,
   Projects: FolderKanban,
   Contact: Mail,
+Services: Package,
   Friends: Users,           // ✅ proper icon
   Education: GraduationCap, // ✅ proper icon
   Certifications: Award,    // ✅ proper icon
