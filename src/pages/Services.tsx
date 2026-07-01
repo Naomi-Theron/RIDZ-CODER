@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { 
   Code, Smartphone, Database, Cloud, Shield, 
-  Zap, Check, Send, Package, Clock, Users,
-  MessageCircle, Coffee 
+  Package, Send, Coffee 
 } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
@@ -32,7 +31,7 @@ const services: Service[] = [
       'Database setup',
       'Deployment & hosting'
     ],
-    price: 'KES 15,000',
+    price: 'UGX 15,000',
     priceLabel: 'Starting at',
     popular: true,
   },
@@ -47,7 +46,7 @@ const services: Service[] = [
       'Push notifications',
       'App store deployment'
     ],
-    price: 'KES 25,000',
+    price: 'UGX 25,000',
     priceLabel: 'Starting at',
   },
   {
@@ -61,7 +60,7 @@ const services: Service[] = [
       'Media handling',
       'Custom workflows'
     ],
-    price: 'KES 10,000',
+    price: 'UGX 10,000',
     priceLabel: 'Starting at',
   },
   {
@@ -75,7 +74,7 @@ const services: Service[] = [
       'Database design',
       'Server deployment'
     ],
-    price: 'KES 20,000',
+    price: 'UGX 20,000',
     priceLabel: 'Starting at',
   },
   {
@@ -89,7 +88,7 @@ const services: Service[] = [
       'Cloud migration',
       'Security hardening'
     ],
-    price: 'KES 18,000',
+    price: 'UGX 18,000',
     priceLabel: 'Starting at',
   },
   {
@@ -103,7 +102,7 @@ const services: Service[] = [
       'Security audits',
       'Vulnerability fixes'
     ],
-    price: 'KES 12,000',
+    price: 'UGX 12,000',
     priceLabel: 'Starting at',
   },
 ];
@@ -132,7 +131,6 @@ export default function Services() {
     }
     setSending(true);
     try {
-      // You can replace this with your actual API endpoint
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -179,26 +177,27 @@ export default function Services() {
             <div
               key={service.id}
               onClick={() => setSelectedService(service.id)}
-              className={`glass-card rounded-2xl p-5 cursor-pointer transition-all duration-300 hover:scale-[1.02] ${
+              className={`glass-card rounded-2xl p-5 cursor-pointer transition-all duration-300 hover:scale-[1.02] text-center ${
                 selectedService === service.id 
                   ? 'border-primary/60 ring-2 ring-primary/30' 
                   : 'hover:border-primary/30'
               }`}
             >
-              <div className="flex items-start justify-between mb-3">
+              {/* Centered icon */}
+              <div className="flex justify-center mb-3">
                 <div className="text-primary">{service.icon}</div>
-                {service.popular && (
-                  <span className="text-[10px] font-semibold bg-primary/20 text-primary px-2 py-0.5 rounded-full">
-                    Popular
-                  </span>
-                )}
               </div>
-              <h3 className="font-bold text-foreground mb-1">{service.title}</h3>
+              <h3 className="font-bold text-foreground text-lg mb-1">{service.title}</h3>
               <p className="text-xs text-muted-foreground mb-3 line-clamp-2">{service.description}</p>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-center gap-2">
                 <span className="text-sm font-bold text-primary">{service.price}</span>
                 <span className="text-[10px] text-muted-foreground">{service.priceLabel}</span>
               </div>
+              {service.popular && (
+                <span className="inline-block mt-2 text-[10px] font-semibold bg-primary/20 text-primary px-2 py-0.5 rounded-full">
+                  Popular
+                </span>
+              )}
             </div>
           ))}
         </div>
@@ -251,18 +250,18 @@ export default function Services() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  placeholder="+254 712 345 678"
+                  placeholder="+256 712 345 678"
                   className="w-full bg-background/50 border border-border/60 rounded-lg px-3 py-2 text-foreground text-sm"
                 />
               </div>
               <div>
-                <label className="text-sm text-muted-foreground block mb-1">Budget (KES)</label>
+                <label className="text-sm text-muted-foreground block mb-1">Budget (UGX)</label>
                 <input
                   type="text"
                   name="budget"
                   value={formData.budget}
                   onChange={handleInputChange}
-                  placeholder="e.g., 10,000 - 50,000"
+                  placeholder="e.g., 100,000 - 500,000"
                   className="w-full bg-background/50 border border-border/60 rounded-lg px-3 py-2 text-foreground text-sm"
                 />
               </div>
