@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { 
-  Download, File, Folder, FileArchive, FileCode, FileJson, 
-  Search, Filter, ChevronDown, ChevronRight
+  Download, Search, Folder, ChevronDown, ChevronRight
 } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
@@ -15,7 +14,7 @@ interface DownloadItem {
   category: string;
   fileSize: string;
   downloadUrl: string;
-  icon: React.ReactNode;
+  imageUrl: string;
   fileType: string;
 }
 
@@ -28,7 +27,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Minibot',
     fileSize: '2.4 MB',
     downloadUrl: '/files/minibot-v1.zip',
-    icon: <FileArchive className="size-5" />,
+    imageUrl: 'https://placehold.co/600x400/1e3a8a/white?text=Minibot+v1',
     fileType: '.zip',
   },
   {
@@ -38,7 +37,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Minibot',
     fileSize: '3.1 MB',
     downloadUrl: '/files/minibot-v2.zip',
-    icon: <FileArchive className="size-5" />,
+    imageUrl: 'https://placehold.co/600x400/3b82f6/white?text=Minibot+v2',
     fileType: '.zip',
   },
   // Bugbot
@@ -49,7 +48,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Bugbot',
     fileSize: '1.8 MB',
     downloadUrl: '/files/bugbot-beta.zip',
-    icon: <FileCode className="size-5" />,
+    imageUrl: 'https://placehold.co/600x400/8b5cf6/white?text=Bugbot+Beta',
     fileType: '.zip',
   },
   {
@@ -59,7 +58,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Bugbot',
     fileSize: '2.2 MB',
     downloadUrl: '/files/bugbot-stable.zip',
-    icon: <FileCode className="size-5" />,
+    imageUrl: 'https://placehold.co/600x400/8b5cf6/white?text=Bugbot+Stable',
     fileType: '.zip',
   },
   // Nomoral Bat
@@ -70,7 +69,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Nomoral Bat',
     fileSize: '0.8 MB',
     downloadUrl: '/files/nomoral-bat-v1.zip',
-    icon: <File className="size-5" />,
+    imageUrl: 'https://placehold.co/600x400/22c55e/white?text=Nomoral+Bat+v1',
     fileType: '.bat',
   },
   {
@@ -80,7 +79,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Nomoral Bat',
     fileSize: '1.2 MB',
     downloadUrl: '/files/nomoral-bat-v2.zip',
-    icon: <File className="size-5" />,
+    imageUrl: 'https://placehold.co/600x400/22c55e/white?text=Nomoral+Bat+v2',
     fileType: '.bat',
   },
   // Others
@@ -91,7 +90,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Others',
     fileSize: '0.9 MB',
     downloadUrl: '/files/wa-automation.zip',
-    icon: <FileJson className="size-5" />,
+    imageUrl: 'https://placehold.co/600x400/ef4444/white?text=WA+Automation',
     fileType: '.py',
   },
   {
@@ -101,7 +100,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Others',
     fileSize: '0.5 MB',
     downloadUrl: '/files/server-monitor.zip',
-    icon: <File className="size-5" />,
+    imageUrl: 'https://placehold.co/600x400/ef4444/white?text=Server+Monitor',
     fileType: '.sh',
   },
 ];
@@ -134,7 +133,7 @@ export default function Downloads() {
       <Scene3D />
       <MenuButton />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 py-20">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 py-20">
         {/* Header */}
         <div className="text-center mb-10 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-1.5 mb-4">
@@ -176,10 +175,10 @@ export default function Downloads() {
           </div>
         </div>
 
-        {/* Downloads List */}
-        <div className="space-y-3">
+        {/* Downloads Grid – cards with images */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredItems.length === 0 ? (
-            <div className="glass-card rounded-2xl p-12 text-center">
+            <div className="col-span-full glass-card rounded-2xl p-12 text-center">
               <Folder className="size-10 text-muted-foreground mx-auto mb-3" />
               <p className="text-muted-foreground">No files found. Try adjusting your search.</p>
             </div>
@@ -187,57 +186,67 @@ export default function Downloads() {
             filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="glass-card rounded-xl p-4 transition-all hover:scale-[1.01] hover:border-primary/30"
+                className="glass-card rounded-2xl overflow-hidden transition-all hover:scale-[1.02] hover:border-primary/30 flex flex-col"
               >
-                <div className="flex items-start gap-4">
-                  {/* Icon */}
-                  <div className="text-primary mt-1">
-                    {item.icon}
+                {/* Image */}
+                <div className="w-full aspect-video overflow-hidden bg-background/50">
+                  <img
+                    src={item.imageUrl}
+                    alt={item.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="p-4 flex flex-col flex-1">
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="font-bold text-foreground text-base truncate">{item.name}</h3>
+                    <span className="text-[10px] text-muted-foreground bg-background/50 px-2 py-0.5 rounded-full whitespace-nowrap">
+                      {item.category}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-1 line-clamp-2 flex-1">
+                    {item.description}
+                  </p>
+
+                  {/* Meta info */}
+                  <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+                    <span className="font-mono">{item.fileSize}</span>
+                    <span className="opacity-50">•</span>
+                    <span>{item.fileType}</span>
                   </div>
 
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="font-bold text-foreground text-sm truncate">{item.name}</h3>
-                        <p className="text-xs text-muted-foreground line-clamp-2">{item.description}</p>
-                      </div>
-                      <div className="flex items-center gap-3 flex-shrink-0">
-                        <span className="text-[10px] text-muted-foreground bg-background/50 px-2 py-0.5 rounded-full">
-                          {item.category}
-                        </span>
-                        <span className="text-[10px] text-muted-foreground">{item.fileSize}</span>
-                        <a
-                          href={item.downloadUrl}
-                          download
-                          onClick={() => handleDownload(item)}
-                          className="glass-card px-3 py-1.5 rounded-lg text-xs font-medium text-primary hover:text-primary/80 transition-colors flex items-center gap-1"
-                        >
-                          <Download className="size-3.5" />
-                          Download
-                        </a>
-                      </div>
-                    </div>
-                    {/* Expandable details (optional) */}
-                    <button
-                      onClick={() => toggleExpand(item.id)}
-                      className="mt-1 text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
-                    >
-                      {expanded[item.id] ? (
-                        <ChevronDown className="size-3" />
-                      ) : (
-                        <ChevronRight className="size-3" />
-                      )}
-                      {expanded[item.id] ? 'Hide details' : 'Show details'}
-                    </button>
-                    {expanded[item.id] && (
-                      <div className="mt-2 p-2 bg-background/30 rounded-lg text-xs text-muted-foreground">
-                        <p><strong>File type:</strong> {item.fileType}</p>
-                        <p><strong>Size:</strong> {item.fileSize}</p>
-                        <p><strong>MD5:</strong> <span className="font-mono">d41d8cd98f00b204e9800998ecf8427e</span></p>
-                      </div>
+                  {/* Expandable details */}
+                  <button
+                    onClick={() => toggleExpand(item.id)}
+                    className="mt-1 text-[10px] text-muted-foreground hover:text-foreground flex items-center gap-1 self-start"
+                  >
+                    {expanded[item.id] ? (
+                      <ChevronDown className="size-3" />
+                    ) : (
+                      <ChevronRight className="size-3" />
                     )}
-                  </div>
+                    {expanded[item.id] ? 'Hide details' : 'Show details'}
+                  </button>
+                  {expanded[item.id] && (
+                    <div className="mt-2 p-2 bg-background/30 rounded-lg text-[10px] text-muted-foreground space-y-1">
+                      <p><strong>File type:</strong> {item.fileType}</p>
+                      <p><strong>Size:</strong> {item.fileSize}</p>
+                      <p><strong>MD5:</strong> <span className="font-mono">d41d8cd98f00b204e9800998ecf8427e</span></p>
+                    </div>
+                  )}
+
+                  {/* Download button at bottom */}
+                  <a
+                    href={item.downloadUrl}
+                    download
+                    onClick={() => handleDownload(item)}
+                    className="mt-4 w-full glass-card px-4 py-2 rounded-lg text-sm font-medium text-primary hover:text-primary/80 transition-colors flex items-center justify-center gap-2"
+                  >
+                    <Download className="size-4" />
+                    Download {item.name}
+                  </a>
                 </div>
               </div>
             ))
