@@ -50,6 +50,7 @@ export const NAV_SECTIONS = [
 export const ALL_ROUTES = [
   { label: 'Home', href: '/', isAnchor: false },
   { label: 'Tech Stack', href: '/#tech', isAnchor: true },
+ { label: 'Downloads', href: '/downloads', isAnchor: false },
   { label: 'Projects', href: '/#projects', isAnchor: true },
   { label: 'Services', href: '/services', isAnchor: false },
   { label: 'Contact', href: '/#contact', isAnchor: true },
