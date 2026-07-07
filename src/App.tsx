@@ -9,7 +9,6 @@ const Dashboard = lazy(() => import('@/pages/Dashboard'));
 const Downloads = lazy(() => import('@/pages/Downloads'));
 const Services = lazy(() => import('@/pages/Services'));
 const Friends = lazy(() => import('@/pages/Friends'));
-const Certifications = lazy(() => import('@/pages/Certifications'));
 const Donation = lazy(() => import('@/pages/Donation'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
