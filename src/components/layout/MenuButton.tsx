@@ -15,7 +15,6 @@ const ROUTE_ICONS: Record<string, React.ElementType> = {
 Downloads: Download,
 Services: Package,
   Friends: Users,          
-  Certifications: Award, 
   Donate: Heart,
 };
 
