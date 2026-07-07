@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { 
   Code, Smartphone, Database, Cloud, Shield, 
-  Package, Send, Coffee, MessageCircle   // ✅ Added MessageCircle
+  Package, Send, Coffee, MessageCircle
 } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
@@ -25,12 +25,7 @@ const services: Service[] = [
     title: 'Web Development',
     icon: <Code className="size-6" />,
     description: 'Full-stack web applications built with React, TypeScript, Node.js, and Tailwind CSS.',
-    features: [
-      'Responsive design',
-      'API integration',
-      'Database setup',
-      'Deployment & hosting'
-    ],
+    features: ['Responsive design', 'API integration', 'Database setup', 'Deployment & hosting'],
     price: 'UGX 15,000',
     priceLabel: 'Starting at',
     popular: true,
@@ -40,26 +35,16 @@ const services: Service[] = [
     title: 'App Development',
     icon: <Smartphone className="size-6" />,
     description: 'Cross-platform mobile apps using React Native, Flutter, or web-based solutions.',
-    features: [
-      'iOS & Android support',
-      'Offline capability',
-      'Push notifications',
-      'App store deployment'
-    ],
+    features: ['iOS & Android support', 'Offline capability', 'Push notifications', 'App store deployment'],
     price: 'UGX 25,000',
     priceLabel: 'Starting at',
   },
   {
     id: 'whatsapp-bot',
     title: 'WhatsApp Bot',
-    icon: <MessageCircle className="size-6" />,   // ✅ Now defined
+    icon: <MessageCircle className="size-6" />,
     description: 'Automated WhatsApp bots for business, customer service, and community management.',
-    features: [
-      'Multi-device support',
-      'Auto-replies & commands',
-      'Media handling',
-      'Custom workflows'
-    ],
+    features: ['Multi-device support', 'Auto-replies & commands', 'Media handling', 'Custom workflows'],
     price: 'UGX 10,000',
     priceLabel: 'Starting at',
   },
@@ -68,12 +53,7 @@ const services: Service[] = [
     title: 'Backend & API',
     icon: <Database className="size-6" />,
     description: 'Robust, scalable backend systems with RESTful APIs, WebSockets, and cloud integration.',
-    features: [
-      'REST & GraphQL APIs',
-      'Authentication & security',
-      'Database design',
-      'Server deployment'
-    ],
+    features: ['REST & GraphQL APIs', 'Authentication & security', 'Database design', 'Server deployment'],
     price: 'UGX 20,000',
     priceLabel: 'Starting at',
   },
@@ -82,12 +62,7 @@ const services: Service[] = [
     title: 'Cloud & DevOps',
     icon: <Cloud className="size-6" />,
     description: 'Deployment, monitoring, and infrastructure automation on AWS, Vercel, and Docker.',
-    features: [
-      'CI/CD pipelines',
-      'Containerization',
-      'Cloud migration',
-      'Security hardening'
-    ],
+    features: ['CI/CD pipelines', 'Containerization', 'Cloud migration', 'Security hardening'],
     price: 'UGX 18,000',
     priceLabel: 'Starting at',
   },
@@ -96,12 +71,7 @@ const services: Service[] = [
     title: 'Security & Encryption',
     icon: <Shield className="size-6" />,
     description: 'Code obfuscation, encryption engines, and security audits for your applications.',
-    features: [
-      'Code obfuscation',
-      'Encryption tools',
-      'Security audits',
-      'Vulnerability fixes'
-    ],
+    features: ['Code obfuscation', 'Encryption tools', 'Security audits', 'Vulnerability fixes'],
     price: 'UGX 12,000',
     priceLabel: 'Starting at',
   },
@@ -118,6 +88,7 @@ export default function Services() {
     timeline: '',
   });
   const [sending, setSending] = useState(false);
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/meebdywn';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -131,20 +102,35 @@ export default function Services() {
     }
     setSending(true);
     try {
-      const response = await fetch('/api/contact', {
+      // Prepare data for Formspree
+      const payload = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || 'Not provided',
+        service: selectedService ? services.find(s => s.id === selectedService)?.title : 'General Inquiry',
+        budget: formData.budget || 'Not specified',
+        timeline: formData.timeline || 'Not specified',
+        message: formData.message,
+        _subject: `New Service Order from ${formData.name}`,
+        _replyto: formData.email,
+      };
+
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          service: selectedService ? services.find(s => s.id === selectedService)?.title : 'General Inquiry',
-        }),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(payload),
       });
+
       if (response.ok) {
         toast.success('Order request sent! I\'ll get back to you shortly.');
         setFormData({ name: '', email: '', phone: '', message: '', budget: '', timeline: '' });
         setSelectedService(null);
       } else {
-        toast.error('Failed to send. Please try again.');
+        const errorData = await response.json();
+        toast.error(errorData.error || 'Failed to send. Please try again.');
       }
     } catch {
       toast.error('Network error. Please try again.');
