@@ -3,14 +3,14 @@ import {
 } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
 import Scene3D from '@/components/features/Scene3D';
-import Footer from '@/components/layout/Footer'; // adjust path if needed
+import Footer from '@/components/layout/Footer'; 
 
 const friendsList = [
   {
-    name: 'Jinx Bae',
-    role: 'Creative TikTokee& Gamer',
-    avatar: 'https://files.catbox.moe/6ptig7.png', // replace with actual image
-    bio: 'Not into tech, but amazing at comfort and storytelling. Jinx brings creativity to every conversation.',
+    name: 'Jessie',
+    role: 'Creative TikToker & Gamer',
+    avatar: 'https://files.catbox.moe/upvjj5.jpg',
+    bio: 'Not into tech, but amazing at comfort and storytelling. Jessie brings creativity to every conversation,She is my favorite and my safe place.',
     icon: <Gamepad2 className="size-4" />,
     interests: 'Tiktok, gaming, music',
   },
