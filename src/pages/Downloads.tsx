@@ -47,7 +47,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Bugbot',
     fileSize: '1.8 MB',
     downloadUrl: '/files/bugbot-beta.zip',
-    imageUrl: 'https://files.catbox.moe/ww35zj.png',
+    imageUrl: 'https://files.catbox.moe/qrphel.png',
     fileType: '.zip',
   },
 
