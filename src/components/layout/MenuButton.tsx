@@ -15,10 +15,9 @@ const ROUTE_ICONS: Record<string, React.ElementType> = {
   Contact: Mail, 
 Downloads: Download,
 Services: Package,
-  Friends: Users,           // ✅ proper icon
-  Education: GraduationCap, // ✅ proper icon
-  Certifications: Award,    // ✅ proper icon
-  Donate: Heart,            // ✅ proper icon
+  Friends: Users,          
+  Certifications: Award, 
+  Donate: Heart,
 };
 
 export default function MenuButton() {
