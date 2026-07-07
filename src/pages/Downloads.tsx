@@ -26,7 +26,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Minibot',
     fileSize: '1.4 MB',
     downloadUrl: '/files/minibot.zip',
-    imageUrl: 'https://placehold.co/600x400/1e3a8a/white?text=Minibot+v1',
+    imageUrl: 'https://files.catbox.moe/2c2m3c.png',
     fileType: '.zip',
   },
   {
@@ -36,7 +36,7 @@ const downloadItems: DownloadItem[] = [
     category: 'normalbot',
     fileSize: '3.1 MB',
     downloadUrl: '/files/minibot-v2.zip',
-    imageUrl: 'https://placehold.co/600x400/3b82f6/white?text=Minibot+v2',
+    imageUrl: 'https://files.catbox.moe/do545q.jpg',
     fileType: '.zip',
   },
   // Bugbot
