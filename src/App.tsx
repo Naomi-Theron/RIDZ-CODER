@@ -79,7 +79,7 @@ export default function App() {
         />
         <Route path="/friends" element={<Friends />} />
         
-        <Route path="/certifications" element={<Certifications />} />
+      
         <Route path="/donate" element={<Donation />} />
 <Route path="/downloads" element={<Downloads />} />
 <Route path="/services" element={<Services />} />
