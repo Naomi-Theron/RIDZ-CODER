@@ -19,22 +19,21 @@ interface DownloadItem {
 }
 
 const downloadItems: DownloadItem[] = [
-  // Minibot
   {
-    id: 'minibot-v1',
-    name: 'Minibot v1.0',
+    id: 'Nemesis-mini',
+    name: 'NEMESIS-MINI',
     description: 'Lightweight WhatsApp bot with basic automation features.',
     category: 'Minibot',
-    fileSize: '2.4 MB',
-    downloadUrl: '/files/minibot-v1.zip',
+    fileSize: '1.4 MB',
+    downloadUrl: '/files/minibot.zip',
     imageUrl: 'https://placehold.co/600x400/1e3a8a/white?text=Minibot+v1',
     fileType: '.zip',
   },
   {
-    id: 'minibot-v2',
-    name: 'Minibot v2.0',
+    id: 'Vermilion-md',
+    name: 'VERMILION MD v2.0',
     description: 'Enhanced version with multi-device support and custom commands.',
-    category: 'Minibot',
+    category: 'normalbot',
     fileSize: '3.1 MB',
     downloadUrl: '/files/minibot-v2.zip',
     imageUrl: 'https://placehold.co/600x400/3b82f6/white?text=Minibot+v2',
@@ -51,61 +50,10 @@ const downloadItems: DownloadItem[] = [
     imageUrl: 'https://placehold.co/600x400/8b5cf6/white?text=Bugbot+Beta',
     fileType: '.zip',
   },
-  {
-    id: 'bugbot-stable',
-    name: 'Bugbot Stable',
-    description: 'Production-ready bug tracking bot with webhook support.',
-    category: 'Bugbot',
-    fileSize: '2.2 MB',
-    downloadUrl: '/files/bugbot-stable.zip',
-    imageUrl: 'https://placehold.co/600x400/8b5cf6/white?text=Bugbot+Stable',
-    fileType: '.zip',
-  },
-  // Nomoral Bat
-  {
-    id: 'nomoral-bat-v1',
-    name: 'Nomoral Bat v1.0',
-    description: 'Batch automation scripts for repetitive tasks on Windows.',
-    category: 'Nomoral Bat',
-    fileSize: '0.8 MB',
-    downloadUrl: '/files/nomoral-bat-v1.zip',
-    imageUrl: 'https://placehold.co/600x400/22c55e/white?text=Nomoral+Bat+v1',
-    fileType: '.bat',
-  },
-  {
-    id: 'nomoral-bat-v2',
-    name: 'Nomoral Bat v2.0',
-    description: 'Advanced batch scripts with error handling and logging.',
-    category: 'Nomoral Bat',
-    fileSize: '1.2 MB',
-    downloadUrl: '/files/nomoral-bat-v2.zip',
-    imageUrl: 'https://placehold.co/600x400/22c55e/white?text=Nomoral+Bat+v2',
-    fileType: '.bat',
-  },
-  // Others
-  {
-    id: 'wa-automation',
-    name: 'WhatsApp Automation Tool',
-    description: 'Python script for scheduling WhatsApp messages.',
-    category: 'Others',
-    fileSize: '0.9 MB',
-    downloadUrl: '/files/wa-automation.zip',
-    imageUrl: 'https://placehold.co/600x400/ef4444/white?text=WA+Automation',
-    fileType: '.py',
-  },
-  {
-    id: 'server-monitor',
-    name: 'Server Monitor Script',
-    description: 'Bash script for monitoring server uptime and sending alerts.',
-    category: 'Others',
-    fileSize: '0.5 MB',
-    downloadUrl: '/files/server-monitor.zip',
-    imageUrl: 'https://placehold.co/600x400/ef4444/white?text=Server+Monitor',
-    fileType: '.sh',
-  },
+
 ];
 
-const categories = ['All', 'Minibot', 'Bugbot', 'Nomoral Bat', 'Others'];
+const categories = ['All', 'Minibot', 'Bugbot', 'Normal Bot'];
 
 export default function Downloads() {
   const [activeCategory, setActiveCategory] = useState('All');
