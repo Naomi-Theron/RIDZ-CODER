@@ -26,7 +26,7 @@ const downloadItems: DownloadItem[] = [
     category: 'Minibot',
     fileSize: '1.4 MB',
     downloadUrl: '/files/minibot.zip',
-    imageUrl: 'https://files.catbox.moe/2c2m3c.png',
+    imageUrl: 'https://files.catbox.moe/ww35zj.png',
     fileType: '.zip',
   },
   {
@@ -41,13 +41,13 @@ const downloadItems: DownloadItem[] = [
   },
   // Bugbot
   {
-    id: 'bugbot-beta',
-    name: 'Bugbot Beta',
-    description: 'Automated bug reporting and tracking tool for GitHub issues.',
+    id: 'bugbot',
+    name: 'Nemesis Bugbot',
+    description: 'Automated bug reporting and tracking tool for Whatsapp.',
     category: 'Bugbot',
     fileSize: '1.8 MB',
     downloadUrl: '/files/bugbot-beta.zip',
-    imageUrl: 'https://placehold.co/600x400/8b5cf6/white?text=Bugbot+Beta',
+    imageUrl: 'https://files.catbox.moe/ww35zj.png',
     fileType: '.zip',
   },
 
