@@ -53,9 +53,7 @@ export const ALL_ROUTES = [
  { label: 'Downloads', href: '/downloads', isAnchor: false },
   { label: 'Projects', href: '/#projects', isAnchor: true },
   { label: 'Services', href: '/services', isAnchor: false },
-  { label: 'Contact', href: '/#contact', isAnchor: true },
   { label: 'Friends', href: '/friends', isAnchor: false },
-  { label: 'Education', href: '/education', isAnchor: false },
   { label: 'Certifications', href: '/certifications', isAnchor: false },
   { label: 'Donate', href: '/donate', isAnchor: false },
 ];
