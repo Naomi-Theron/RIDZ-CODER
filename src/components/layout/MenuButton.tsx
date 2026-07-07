@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { 
   Menu, X, Home,Package,Download, Code2, FolderKanban, Mail, LogIn, LayoutDashboard, LogOut, Code,
-  Users, GraduationCap, Award, Heart, BookOpen, Gift, UserPlus
+  Users, Award, Heart, BookOpen, Gift, UserPlus
 } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
