@@ -36,8 +36,9 @@ export const TECH_STACK: TechItem[] = [
 export const TYPING_ROLES = ['Developer', 'Designer', 'Creator', 'Innovator', 'Graphics Designer'];
 
 export const AUTH_CREDENTIALS = {
+  username: 'RidzCoder',
   email: 'ridzcoder@gmail.com',
-  password: 'Ridzcoder@19',
+  password: 'RidzCoder@19',
 } as const;
 
 export const NAV_SECTIONS = [
