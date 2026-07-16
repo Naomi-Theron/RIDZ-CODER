@@ -7,7 +7,6 @@ export default function ProjectSection() {
   const sorted = [...projects].sort((a, b) => a.sortOrder - b.sortOrder);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // If no projects, show fallback
   if (sorted.length === 0) {
     return (
       <section id="projects" className="px-4 py-10">
@@ -88,12 +87,12 @@ export default function ProjectSection() {
         </p>
       </div>
 
-      {/* 3D Stage */}
+      {/* 3D Stage – now with proper containment */}
       <div 
         className="relative h-[480px] md:h-[500px] w-full overflow-visible flex items-center justify-center"
         style={{ perspective: "1000px" }}
       >
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {sorted.map((project, index) => {
             const style = getCardStyle(index);
             const isActive = index === currentIndex;
@@ -104,7 +103,7 @@ export default function ProjectSection() {
                 onClick={() => {
                   if (!isActive) setCurrentIndex(index);
                 }}
-                className="absolute w-[92%] max-w-[420px] h-[400px] rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl transition-all duration-700 ease-out flex flex-col overflow-hidden group cursor-pointer shadow-[0_0_50px_-15px_rgba(59,130,246,0.15)]"
+                className="absolute w-[92%] max-w-[420px] h-[400px] rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl transition-all duration-700 ease-out flex flex-col overflow-hidden group cursor-pointer shadow-[0_0_50px_-15px_rgba(255,215,0,0.15)] pointer-events-auto"
                 style={{
                   transform: style.transform,
                   zIndex: style.zIndex,
@@ -146,7 +145,6 @@ export default function ProjectSection() {
                   </div>
 
                   <div>
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-5">
                       {project.techs?.slice(0, 4).map((tech) => (
                         <span
@@ -158,7 +156,6 @@ export default function ProjectSection() {
                       ))}
                     </div>
 
-                    {/* Footer Actions */}
                     <div className="flex items-center justify-between pt-3 border-t border-white/5">
                       {project.url && (
                         <a
@@ -177,7 +174,7 @@ export default function ProjectSection() {
                         href={project.url || '#'}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-primary/20 bg-primary/10 hover:bg-primary hover:border-primary text-xs font-mono text-primary hover:text-white transition-all duration-300"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-primary/20 bg-primary/10 hover:bg-primary hover:border-primary text-xs font-mono text-primary hover:text-black transition-all duration-300"
                         onClick={(e) => e.stopPropagation()}
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
@@ -193,7 +190,7 @@ export default function ProjectSection() {
       </div>
 
       {/* Navigation Controls */}
-      <div className="flex items-center justify-center gap-6 mt-4">
+      <div className="flex items-center justify-center gap-6 mt-4 relative z-10">
         <button
           onClick={handlePrev}
           className="p-3 rounded-full border border-white/10 bg-card/40 hover:bg-primary/20 hover:border-primary/40 text-muted-foreground hover:text-primary transition-all cursor-pointer backdrop-blur-md"
