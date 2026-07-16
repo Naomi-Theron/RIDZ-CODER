@@ -1,43 +1,42 @@
 import { create } from 'zustand';
-import type { User } from '@/types';
+import { persist } from 'zustand/middleware';
 import { AUTH_CREDENTIALS } from '@/constants/config';
 
 interface AuthState {
   isAuthenticated: boolean;
-  user: User | null;
-  login: (email: string, password: string) => boolean;
+  user: { username: string; email: string } | null;
+  login: (username: string, email: string, password: string) => boolean;
   logout: () => void;
-  checkAuth: () => void;
+  checkAuth: () => boolean;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
-  isAuthenticated: !!localStorage.getItem('ridz-auth'),
-  user: localStorage.getItem('ridz-auth')
-    ? { email: AUTH_CREDENTIALS.email }
-    : null,
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set, get) => ({
+      isAuthenticated: false,
+      user: null,
 
-  login: (email: string, password: string) => {
-    if (
-      email === AUTH_CREDENTIALS.email &&
-      password === AUTH_CREDENTIALS.password
-    ) {
-      localStorage.setItem('ridz-auth', 'true');
-      set({ isAuthenticated: true, user: { email } });
-      return true;
-    }
-    return false;
-  },
+      login: (username: string, email: string, password: string) => {
+        const { username: storedUsername, email: storedEmail, password: storedPassword } = AUTH_CREDENTIALS;
+        if (
+          username === storedUsername &&
+          email === storedEmail &&
+          password === storedPassword
+        ) {
+          set({ isAuthenticated: true, user: { username, email } });
+          return true;
+        }
+        return false;
+      },
 
-  logout: () => {
-    localStorage.removeItem('ridz-auth');
-    set({ isAuthenticated: false, user: null });
-  },
+      logout: () => {
+        set({ isAuthenticated: false, user: null });
+      },
 
-  checkAuth: () => {
-    const isAuth = !!localStorage.getItem('ridz-auth');
-    set({
-      isAuthenticated: isAuth,
-      user: isAuth ? { email: AUTH_CREDENTIALS.email } : null,
-    });
-  },
-}));
+      checkAuth: () => {
+        return get().isAuthenticated;
+      },
+    }),
+    { name: 'auth-storage' }
+  )
+);
