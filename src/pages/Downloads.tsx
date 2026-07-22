@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { 
-  Download, Search, Folder, ChevronDown, ChevronRight
-} from 'lucide-react';
+import { Download, Search, Folder, ChevronDown, ChevronRight } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
-import Scene3D from '@/components/features/Scene3D';
+import VantaGlobeBackground from '@/components/features/VantaGlobeBackground';
 import Footer from '@/components/layout/Footer';
 import { toast } from 'sonner';
 
@@ -20,40 +18,88 @@ interface DownloadItem {
 
 const downloadItems: DownloadItem[] = [
   {
-    id: 'Nemesis-mini',
-    name: 'NEMESIS-MINI',
+    id: 'minibot-v1',
+    name: 'Minibot v1.0',
     description: 'Lightweight WhatsApp bot with basic automation features.',
     category: 'Minibot',
-    fileSize: '1.4 MB',
-    downloadUrl: '/files/minibot.zip',
-    imageUrl: 'https://files.catbox.moe/ww35zj.png',
+    fileSize: '2.4 MB',
+    downloadUrl: '/files/minibot-v1.zip',
+    imageUrl: 'https://placehold.co/600x400/FFD700/000?text=Minibot+v1',
     fileType: '.zip',
   },
   {
-    id: 'Vermilion-md',
-    name: 'VERMILION MD v2.0',
+    id: 'minibot-v2',
+    name: 'Minibot v2.0',
     description: 'Enhanced version with multi-device support and custom commands.',
-    category: 'normalbot',
+    category: 'Minibot',
     fileSize: '3.1 MB',
-    downloadUrl: '/files/vermilion.zip',
-    imageUrl: 'https://files.catbox.moe/do545q.jpg',
+    downloadUrl: '/files/minibot-v2.zip',
+    imageUrl: 'https://placehold.co/600x400/FFD700/000?text=Minibot+v2',
     fileType: '.zip',
   },
-  // Bugbot
   {
-    id: 'bugbot',
-    name: 'Nemesis Bugbot',
-    description: 'Automated bug reporting and tracking tool for Whatsapp.',
+    id: 'bugbot-beta',
+    name: 'Bugbot Beta',
+    description: 'Automated bug reporting and tracking tool for GitHub issues.',
     category: 'Bugbot',
     fileSize: '1.8 MB',
-    downloadUrl: '/files/bugbot.zip',
-    imageUrl: 'https://files.catbox.moe/qrphel.png',
+    downloadUrl: '/files/bugbot-beta.zip',
+    imageUrl: 'https://placehold.co/600x400/FFD700/000?text=Bugbot+Beta',
     fileType: '.zip',
   },
-
+  {
+    id: 'bugbot-stable',
+    name: 'Bugbot Stable',
+    description: 'Production-ready bug tracking bot with webhook support.',
+    category: 'Bugbot',
+    fileSize: '2.2 MB',
+    downloadUrl: '/files/bugbot-stable.zip',
+    imageUrl: 'https://placehold.co/600x400/FFD700/000?text=Bugbot+Stable',
+    fileType: '.zip',
+  },
+  {
+    id: 'nomoral-bat-v1',
+    name: 'Nomoral Bat v1.0',
+    description: 'Batch automation scripts for repetitive tasks on Windows.',
+    category: 'Nomoral Bat',
+    fileSize: '0.8 MB',
+    downloadUrl: '/files/nomoral-bat-v1.zip',
+    imageUrl: 'https://placehold.co/600x400/FFD700/000?text=Nomoral+Bat+v1',
+    fileType: '.bat',
+  },
+  {
+    id: 'nomoral-bat-v2',
+    name: 'Nomoral Bat v2.0',
+    description: 'Advanced batch scripts with error handling and logging.',
+    category: 'Nomoral Bat',
+    fileSize: '1.2 MB',
+    downloadUrl: '/files/nomoral-bat-v2.zip',
+    imageUrl: 'https://placehold.co/600x400/FFD700/000?text=Nomoral+Bat+v2',
+    fileType: '.bat',
+  },
+  {
+    id: 'wa-automation',
+    name: 'WhatsApp Automation Tool',
+    description: 'Python script for scheduling WhatsApp messages.',
+    category: 'Others',
+    fileSize: '0.9 MB',
+    downloadUrl: '/files/wa-automation.zip',
+    imageUrl: 'https://placehold.co/600x400/FFD700/000?text=WA+Automation',
+    fileType: '.py',
+  },
+  {
+    id: 'server-monitor',
+    name: 'Server Monitor Script',
+    description: 'Bash script for monitoring server uptime and sending alerts.',
+    category: 'Others',
+    fileSize: '0.5 MB',
+    downloadUrl: '/files/server-monitor.zip',
+    imageUrl: 'https://placehold.co/600x400/FFD700/000?text=Server+Monitor',
+    fileType: '.sh',
+  },
 ];
 
-const categories = ['All', 'Minibot', 'Bugbot', 'Normal Bot'];
+const categories = ['All', 'Minibot', 'Bugbot', 'Nomoral Bat', 'Others'];
 
 export default function Downloads() {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -73,16 +119,14 @@ export default function Downloads() {
 
   const handleDownload = (item: DownloadItem) => {
     toast.success(`Downloading ${item.name}...`);
-    // You can add analytics or tracking here
   };
 
   return (
     <div className="relative min-h-screen">
-      <Scene3D />
+      <VantaGlobeBackground />
       <MenuButton />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-20">
-        {/* Header */}
         <div className="text-center mb-10 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-1.5 mb-4">
             <Download className="size-4 text-primary" />
@@ -94,7 +138,6 @@ export default function Downloads() {
           </p>
         </div>
 
-        {/* Search & Filter */}
         <div className="flex flex-col sm:flex-row gap-3 mb-8">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
@@ -123,7 +166,6 @@ export default function Downloads() {
           </div>
         </div>
 
-        {/* Downloads Grid – cards with images */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredItems.length === 0 ? (
             <div className="col-span-full glass-card rounded-2xl p-12 text-center">
@@ -136,7 +178,6 @@ export default function Downloads() {
                 key={item.id}
                 className="glass-card rounded-2xl overflow-hidden transition-all hover:scale-[1.02] hover:border-primary/30 flex flex-col"
               >
-                {/* Image */}
                 <div className="w-full aspect-video overflow-hidden bg-background/50">
                   <img
                     src={item.imageUrl}
@@ -145,8 +186,6 @@ export default function Downloads() {
                     loading="lazy"
                   />
                 </div>
-
-                {/* Content */}
                 <div className="p-4 flex flex-col flex-1">
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="font-bold text-foreground text-base truncate">{item.name}</h3>
@@ -157,24 +196,16 @@ export default function Downloads() {
                   <p className="text-xs text-muted-foreground mt-1 line-clamp-2 flex-1">
                     {item.description}
                   </p>
-
-                  {/* Meta info */}
                   <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
                     <span className="font-mono">{item.fileSize}</span>
                     <span className="opacity-50">•</span>
                     <span>{item.fileType}</span>
                   </div>
-
-                  {/* Expandable details */}
                   <button
                     onClick={() => toggleExpand(item.id)}
                     className="mt-1 text-[10px] text-muted-foreground hover:text-foreground flex items-center gap-1 self-start"
                   >
-                    {expanded[item.id] ? (
-                      <ChevronDown className="size-3" />
-                    ) : (
-                      <ChevronRight className="size-3" />
-                    )}
+                    {expanded[item.id] ? <ChevronDown className="size-3" /> : <ChevronRight className="size-3" />}
                     {expanded[item.id] ? 'Hide details' : 'Show details'}
                   </button>
                   {expanded[item.id] && (
@@ -184,8 +215,6 @@ export default function Downloads() {
                       <p><strong>MD5:</strong> <span className="font-mono">d41d8cd98f00b204e9800998ecf8427e</span></p>
                     </div>
                   )}
-
-                  {/* Download button at bottom */}
                   <a
                     href={item.downloadUrl}
                     download
@@ -201,7 +230,6 @@ export default function Downloads() {
           )}
         </div>
 
-        {/* Stats Footer */}
         <div className="mt-8 text-center text-xs text-muted-foreground">
           <p>{downloadItems.length} files available across 4 categories.</p>
           <p className="mt-1">All files are provided as-is. Use responsibly.</p>
