@@ -4,15 +4,9 @@ import { useProjectStore } from '@/stores/projectStore';
 
 export default function ProjectSection() {
   const projects = useProjectStore((s) => s.projects);
-
-  // ✅ SAFETY: ensure projects is always an array
-  const sorted = Array.isArray(projects) 
-    ? [...projects].sort((a, b) => a.sortOrder - b.sortOrder) 
-    : [];
-
+  const sorted = Array.isArray(projects) ? [...projects].sort((a, b) => a.sortOrder - b.sortOrder) : [];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // If no projects, show a friendly message instead of crashing
   if (sorted.length === 0) {
     return (
       <section id="projects" className="px-4 py-10">
@@ -21,29 +15,19 @@ export default function ProjectSection() {
             <Sparkles className="w-3.5 h-3.5 animate-pulse" />
             Featured Projects
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-            My Projects
-          </h2>
-          <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">
-            No projects yet. Check back soon!
-          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">My Projects</h2>
+          <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">No projects yet. Check back soon!</p>
         </div>
       </section>
     );
   }
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % sorted.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + sorted.length) % sorted.length);
-  };
+  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % sorted.length);
+  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + sorted.length) % sorted.length);
 
   const getCardStyle = (index: number) => {
     const total = sorted.length;
     let diff = index - currentIndex;
-
     if (diff > total / 2) diff -= total;
     if (diff < -total / 2) diff += total;
 
@@ -53,7 +37,7 @@ export default function ProjectSection() {
 
     if (isActive) {
       return {
-        transform: "translateX(0%) translateZ(100px) rotateY(0deg) scale(1)",
+        transform: "translateX(0%) translateZ(80px) rotateY(0deg) scale(1)",
         zIndex: 10,
         opacity: 1,
         pointerEvents: "auto" as const,
@@ -61,23 +45,23 @@ export default function ProjectSection() {
       };
     } else if (isLeft) {
       return {
-        transform: "translateX(-45%) translateZ(0px) rotateY(28deg) scale(0.82)",
+        transform: "translateX(-40%) translateZ(0px) rotateY(28deg) scale(0.8)",
         zIndex: 5,
-        opacity: 0.45,
+        opacity: 0.4,
         pointerEvents: "auto" as const,
         filter: "blur(2px)",
       };
     } else if (isRight) {
       return {
-        transform: "translateX(45%) translateZ(0px) rotateY(-28deg) scale(0.82)",
+        transform: "translateX(40%) translateZ(0px) rotateY(-28deg) scale(0.8)",
         zIndex: 5,
-        opacity: 0.45,
+        opacity: 0.4,
         pointerEvents: "auto" as const,
         filter: "blur(2px)",
       };
     } else {
       return {
-        transform: "translateX(0%) translateZ(-150px) rotateY(0deg) scale(0.65)",
+        transform: "translateX(0%) translateZ(-120px) rotateY(0deg) scale(0.6)",
         zIndex: 1,
         opacity: 0,
         pointerEvents: "none" as const,
@@ -87,23 +71,21 @@ export default function ProjectSection() {
   };
 
   return (
-    <section id="projects" className="relative w-full max-w-5xl mx-auto py-12 px-4 select-none">
-      <div className="text-center mb-10">
+    <section id="projects" className="relative w-full max-w-5xl mx-auto py-10 px-4 select-none">
+      <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono uppercase tracking-wider mb-3">
           <Sparkles className="w-3.5 h-3.5 animate-pulse" />
           Featured Projects
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-          My Projects
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">My Projects</h2>
         <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">
           Explore my projects – each one is a fully functional repository built with modern technologies.
         </p>
       </div>
 
-      {/* 3D Stage */}
+      {/* 3D Stage – smaller height */}
       <div 
-        className="relative h-[480px] md:h-[500px] w-full overflow-visible flex items-center justify-center"
+        className="relative h-[380px] md:h-[400px] w-full overflow-visible flex items-center justify-center"
         style={{ perspective: "1000px" }}
       >
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -114,10 +96,8 @@ export default function ProjectSection() {
             return (
               <div
                 key={project.id}
-                onClick={() => {
-                  if (!isActive) setCurrentIndex(index);
-                }}
-                className="absolute w-[92%] max-w-[420px] h-[400px] rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl transition-all duration-700 ease-out flex flex-col overflow-hidden group cursor-pointer shadow-[0_0_50px_-15px_rgba(255,215,0,0.15)] pointer-events-auto"
+                onClick={() => { if (!isActive) setCurrentIndex(index); }}
+                className="absolute w-[88%] max-w-[340px] h-[320px] rounded-2xl border border-white/10 bg-card/80 backdrop-blur-xl transition-all duration-700 ease-out flex flex-col overflow-hidden group cursor-pointer shadow-[0_0_50px_-15px_rgba(255,215,0,0.15)] pointer-events-auto"
                 style={{
                   transform: style.transform,
                   zIndex: style.zIndex,
@@ -127,8 +107,8 @@ export default function ProjectSection() {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {/* Image Section */}
-                <div className="relative h-44 overflow-hidden border-b border-white/5">
+                {/* Image Section – smaller */}
+                <div className="relative h-32 overflow-hidden border-b border-white/5">
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/25 to-transparent z-10" />
                   {project.imageUrl ? (
                     <img
@@ -138,48 +118,48 @@ export default function ProjectSection() {
                       className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
                     />
                   ) : (
-                    <div className="w-full h-full bg-primary/20 flex items-center justify-center text-4xl">
-                      🚀
-                    </div>
+                    <div className="w-full h-full bg-primary/20 flex items-center justify-center text-3xl">🚀</div>
                   )}
-                  <div className="absolute bottom-4 left-4 z-20 flex items-center gap-1.5 px-2 py-0.5 rounded-md border border-primary/30 bg-primary/10 text-[10px] font-mono uppercase tracking-wider text-primary">
+                  <div className="absolute bottom-2 left-3 z-20 flex items-center gap-1.5 px-2 py-0.5 rounded-md border border-primary/30 bg-primary/10 text-[9px] font-mono uppercase tracking-wider text-primary">
                     {project.techs?.[0] || 'Project'}
                   </div>
                 </div>
 
-                {/* Content Section */}
-                <div className="flex-1 p-6 flex flex-col justify-between" style={{ transform: "translateZ(30px)" }}>
+                {/* Content Section – smaller padding and font */}
+                <div className="flex-1 p-4 flex flex-col justify-between" style={{ transform: "translateZ(20px)" }}>
                   <div>
-                    <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground line-clamp-3 mt-2 leading-relaxed">
+                    <p className="text-[11px] text-muted-foreground line-clamp-2 mt-1 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
 
                   <div>
-                    <div className="flex flex-wrap gap-1.5 mb-5">
+                    {/* Tags – smaller */}
+                    <div className="flex flex-wrap gap-1.5 mb-3">
                       {project.techs?.slice(0, 4).map((tech) => (
                         <span
                           key={tech}
-                          className="text-[10px] font-mono text-muted-foreground px-2 py-0.5 rounded-md bg-white/5 border border-white/5"
+                          className="text-[9px] font-mono text-muted-foreground px-1.5 py-0.5 rounded-md bg-white/5 border border-white/5"
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
 
-                    <div className="flex items-center justify-between pt-3 border-t border-white/5">
+                    {/* Actions */}
+                    <div className="flex items-center justify-between pt-2 border-t border-white/5">
                       {project.url && (
                         <a
                           href={project.url}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors"
+                          className="inline-flex items-center gap-1 text-[10px] font-mono text-muted-foreground hover:text-foreground transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <Github className="w-3.5 h-3.5" />
+                          <Github className="w-3 h-3" />
                           Source
                         </a>
                       )}
@@ -188,11 +168,11 @@ export default function ProjectSection() {
                         href={project.url || '#'}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-primary/20 bg-primary/10 hover:bg-primary hover:border-primary text-xs font-mono text-primary hover:text-black transition-all duration-300"
+                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg border border-primary/20 bg-primary/10 hover:bg-primary hover:border-primary text-[10px] font-mono text-primary hover:text-black transition-all duration-300"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        {project.buttonText || 'View Project'}
+                        <ExternalLink className="w-3 h-3" />
+                        {project.buttonText || 'View'}
                       </a>
                     </div>
                   </div>
@@ -203,13 +183,13 @@ export default function ProjectSection() {
         </div>
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex items-center justify-center gap-6 mt-4 relative z-10">
+      {/* Navigation – smaller controls */}
+      <div className="flex items-center justify-center gap-5 mt-3 relative z-10">
         <button
           onClick={handlePrev}
-          className="p-3 rounded-full border border-white/10 bg-card/40 hover:bg-primary/20 hover:border-primary/40 text-muted-foreground hover:text-primary transition-all cursor-pointer backdrop-blur-md"
+          className="p-2 rounded-full border border-white/10 bg-card/40 hover:bg-primary/20 hover:border-primary/40 text-muted-foreground hover:text-primary transition-all cursor-pointer backdrop-blur-md"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4" />
         </button>
 
         <span className="text-xs font-mono text-muted-foreground">
@@ -218,9 +198,9 @@ export default function ProjectSection() {
 
         <button
           onClick={handleNext}
-          className="p-3 rounded-full border border-white/10 bg-card/40 hover:bg-primary/20 hover:border-primary/40 text-muted-foreground hover:text-primary transition-all cursor-pointer backdrop-blur-md"
+          className="p-2 rounded-full border border-white/10 bg-card/40 hover:bg-primary/20 hover:border-primary/40 text-muted-foreground hover:text-primary transition-all cursor-pointer backdrop-blur-md"
         >
-          <ChevronRight className="w-5 h-5" />
+          <ChevronRight className="w-4 h-4" />
         </button>
       </div>
     </section>
