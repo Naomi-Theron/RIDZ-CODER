@@ -12,7 +12,6 @@ import { useProjectStore } from '@/stores/projectStore';
 import { useAuthStore } from '@/stores/authStore';
 import { useSettingsStore } from '@/stores/settingsStore';
 import { useTechStackStore } from '@/stores/techStackStore';
-import { useSocialLinksStore } from '@/stores/socialLinksStore';
 import { toast } from 'sonner';
 import type { Project } from '@/types';
 import MenuButton from '@/components/layout/MenuButton';
