@@ -4,15 +4,29 @@ import { useProjectStore } from '@/stores/projectStore';
 
 export default function ProjectSection() {
   const projects = useProjectStore((s) => s.projects);
-  const sorted = [...projects].sort((a, b) => a.sortOrder - b.sortOrder);
+
+  // ✅ SAFETY: ensure projects is always an array
+  const sorted = Array.isArray(projects) 
+    ? [...projects].sort((a, b) => a.sortOrder - b.sortOrder) 
+    : [];
+
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // If no projects, show a friendly message instead of crashing
   if (sorted.length === 0) {
     return (
       <section id="projects" className="px-4 py-10">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-foreground">My Projects</h2>
-          <p className="text-muted-foreground mt-2">No projects yet. Check back soon!</p>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono uppercase tracking-wider mb-3">
+            <Sparkles className="w-3.5 h-3.5 animate-pulse" />
+            Featured Projects
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+            My Projects
+          </h2>
+          <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">
+            No projects yet. Check back soon!
+          </p>
         </div>
       </section>
     );
@@ -87,7 +101,7 @@ export default function ProjectSection() {
         </p>
       </div>
 
-      {/* 3D Stage – now with proper containment */}
+      {/* 3D Stage */}
       <div 
         className="relative h-[480px] md:h-[500px] w-full overflow-visible flex items-center justify-center"
         style={{ perspective: "1000px" }}
