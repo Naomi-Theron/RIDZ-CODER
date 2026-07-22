@@ -12,7 +12,9 @@ export default function ProjectSection() {
       <section id="projects" className="px-4 py-10">
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono uppercase tracking-wider mb-3">
-  
+            <Sparkles className="w-3.5 h-3.5 animate-pulse" />
+            Featured Projects
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">My Projects</h2>
           <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">No projects yet. Check back soon!</p>
         </div>
@@ -104,7 +106,7 @@ export default function ProjectSection() {
                   transformStyle: "preserve-3d",
                 }}
               >
-                {/* Image – even smaller */}
+                {/* Image */}
                 <div className="relative h-20 overflow-hidden border-b border-white/5">
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/25 to-transparent z-10" />
                   {project.imageUrl ? (
@@ -122,7 +124,7 @@ export default function ProjectSection() {
                   </div>
                 </div>
 
-                {/* Content – compact */}
+                {/* Content */}
                 <div className="flex-1 p-3 flex flex-col justify-between" style={{ transform: "translateZ(15px)" }}>
                   <div>
                     <h3 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate">
@@ -180,7 +182,7 @@ export default function ProjectSection() {
         </div>
       </div>
 
-      {/* Navigation – mini controls */}
+      {/* Navigation */}
       <div className="flex items-center justify-center gap-4 mt-2 relative z-10">
         <button
           onClick={handlePrev}
