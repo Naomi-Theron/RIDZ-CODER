@@ -1,10 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Home, AlertTriangle } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
-import Scene3D from '@/components/features/Scene3D';
+import VantaGlobeBackground from '@/components/features/VantaGlobeBackground';
 
-const NotFound = () => {
+export default function NotFound() {
   const location = useLocation();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const NotFound = () => {
 
   return (
     <div className="relative min-h-screen">
-      <Scene3D />
+      <VantaGlobeBackground />
       <MenuButton />
 
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 text-center">
@@ -36,6 +36,4 @@ const NotFound = () => {
       </div>
     </div>
   );
-};
-
-export default NotFound;
+}
