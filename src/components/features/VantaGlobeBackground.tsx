@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-// Declare VANTA on window
 declare global {
   interface Window {
     VANTA: any;
@@ -17,21 +16,21 @@ export default function VantaGlobeBackground({ className = '' }: VantaGlobeBackg
   const vantaEffect = useRef<any>(null);
 
   useEffect(() => {
-    // Load VANTA script from CDN if not already loaded
-    if (!window.VANTA) {
+    // Load VANTA script if not already loaded
+    if (typeof window !== 'undefined' && !window.VANTA) {
       const script = document.createElement('script');
       script.src = 'https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.globe.min.js';
       script.async = true;
       script.onload = () => {
-        initializeVanta();
+        initVanta();
       };
       document.head.appendChild(script);
     } else {
-      initializeVanta();
+      initVanta();
     }
 
-    function initializeVanta() {
-      if (!containerRef.current || !window.VANTA) return;
+    function initVanta() {
+      if (!containerRef.current || typeof window === 'undefined' || !window.VANTA) return;
       vantaEffect.current = window.VANTA.GLOBE({
         el: containerRef.current,
         THREE: THREE,
@@ -42,9 +41,9 @@ export default function VantaGlobeBackground({ className = '' }: VantaGlobeBackg
         minWidth: 200.00,
         scale: 1.00,
         scaleMobile: 1.00,
-        color: 0xFFD700,        // Gold
+        color: 0xFFD700,
         size: 0.50,
-        backgroundColor: 0x353839, // Dark gray
+        backgroundColor: 0x353839,
       });
     }
 
