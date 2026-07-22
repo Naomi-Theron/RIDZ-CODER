@@ -1,4 +1,4 @@
-import type { TechItem, SocialLink } from '@/types';
+import type { TechItem } from '@/types';
 
 export const SITE_CONFIG = {
   name: 'Ridz Coder',
