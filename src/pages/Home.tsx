@@ -1,6 +1,6 @@
 import ProfileSection from '@/components/features/ProfileSection';
 import TechStackSection from '@/components/features/TechStackSection';
-import ProjectsSection from '@/components/features/ProjectSection';
+import ProjectsSection from '@/components/features/ProjectsSection';
 import ContactSection from '@/components/features/ContactSection';
 import Footer from '@/components/layout/Footer';
 import MenuButton from '@/components/layout/MenuButton';
