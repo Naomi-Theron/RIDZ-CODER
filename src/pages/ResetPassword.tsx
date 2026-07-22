@@ -1,100 +1,124 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, KeyRound } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { useState, FormEvent } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { Mail, ArrowLeft, Send } from 'lucide-react';
+import MenuButton from '@/components/layout/MenuButton';
+import VantaGlobeBackground from '@/components/features/VantaGlobeBackground';
 import { toast } from 'sonner';
-import Scene3D from '@/components/features/Scene3D';
 
 export default function ResetPassword() {
-  const [password, setPassword] = useState('');
-  const [confirm, setConfirm] = useState('');
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!password.trim() || !confirm.trim()) {
-      toast.error('Please fill in both fields');
+    if (!email.trim()) {
+      toast.error('Please enter your email address');
       return;
     }
-    if (password !== confirm) {
-      toast.error('Passwords do not match');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      toast.error('Please enter a valid email address');
       return;
     }
-    if (password.length < 6) {
-      toast.error('Password must be at least 6 characters');
-      return;
-    }
+
     setLoading(true);
-    setTimeout(() => {
-      toast.success('Password reset successfully! You can now log in.');
-      setPassword('');
-      setConfirm('');
+    try {
+      // Send password reset request to your backend
+      const response = await fetch('/api/reset-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setSent(true);
+        toast.success('Password reset link sent to your email.');
+      } else {
+        const data = await response.json();
+        toast.error(data.error || 'Failed to send reset link');
+      }
+    } catch {
+      toast.error('Network error. Please try again.');
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
-    <div className="relative min-h-screen flex items-center justify-center px-4">
-      <Scene3D />
-      <div className="relative z-10 w-full max-w-sm">
-        <Link
-          to="/login"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6"
-        >
-          <ArrowLeft className="size-4" />
-          Back to Login
-        </Link>
+    <div className="relative min-h-screen flex items-center justify-center">
+      <VantaGlobeBackground />
+      <MenuButton />
 
-        <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-6 space-y-5">
-          <div className="text-center mb-2">
-            <div className="size-12 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-3">
-              <KeyRound className="size-5 text-primary" />
+      <div className="relative z-10 w-full max-w-sm px-4 py-8">
+        <div className="glass-card rounded-2xl p-6 space-y-6 animate-fade-in-up">
+          <div className="text-center">
+            <div className="inline-flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary mb-3">
+              <Mail className="size-6" />
             </div>
-            <h1 className="text-xl font-bold text-foreground">Reset Password</h1>
-            <p className="text-sm text-muted-foreground mt-1">Enter your new password below</p>
+            <h1 className="text-2xl font-bold text-foreground">Reset Password</h1>
+            <p className="text-sm text-muted-foreground mt-1">
+              {sent 
+                ? 'Check your email for the reset link' 
+                : 'Enter your email to receive a reset link'}
+            </p>
           </div>
 
-          <div className="space-y-1.5">
-            <Label htmlFor="new-password" className="text-sm text-muted-foreground">New Password</Label>
-            <Input
-              id="new-password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              className="bg-background/50 border-border/60 focus:border-primary"
-            />
-          </div>
+          {sent ? (
+            <div className="space-y-4">
+              <div className="glass-card rounded-xl p-4 text-center">
+                <p className="text-sm text-muted-foreground">
+                  We've sent a password reset link to <strong className="text-foreground">{email}</strong>
+                </p>
+              </div>
+              <button
+                onClick={() => navigate('/login')}
+                className="w-full bg-primary text-primary-foreground font-semibold py-2.5 rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2"
+              >
+                <ArrowLeft className="size-4" />
+                Back to Login
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="text-sm text-muted-foreground block mb-1">Email Address</label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className="w-full bg-background/50 border border-border/60 rounded-lg pl-10 pr-4 py-2.5 text-foreground text-sm focus:border-primary focus:outline-none"
+                    autoFocus
+                  />
+                </div>
+              </div>
 
-          <div className="space-y-1.5">
-            <Label htmlFor="confirm-password" className="text-sm text-muted-foreground">Confirm Password</Label>
-            <Input
-              id="confirm-password"
-              type="password"
-              value={confirm}
-              onChange={(e) => setConfirm(e.target.value)}
-              placeholder="••••••••"
-              className="bg-background/50 border-border/60 focus:border-primary"
-            />
-          </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-primary text-primary-foreground font-semibold py-2.5 rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                {loading ? (
+                  <div className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                ) : (
+                  <Send className="size-4" />
+                )}
+                {loading ? 'Sending...' : 'Send Reset Link'}
+              </button>
 
-          <Button
-            type="submit"
-            disabled={loading}
-            className="w-full glow-button bg-primary text-primary-foreground hover:brightness-110 font-semibold"
-          >
-            {loading ? (
-              <span className="flex items-center gap-2">
-                <span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Resetting...
-              </span>
-            ) : (
-              'Reset Password'
-            )}
-          </Button>
-        </form>
+              <button
+                type="button"
+                onClick={() => navigate('/login')}
+                className="w-full text-xs text-muted-foreground hover:text-primary transition-colors"
+              >
+                ← Back to Login
+              </button>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );
