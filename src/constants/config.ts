@@ -8,15 +8,7 @@ export const SITE_CONFIG = {
   timezone: 'Africa/Kampala',
 } as const;
 
-export const SOCIAL_LINKS: SocialLink[] = [
-  { name: 'GitHub', url: 'https://github.com/ridzcoder', icon: 'github' },
-  { name: 'Telegram', url: 'https://t.me/ridzcoder', icon: 'send' },
-  { name: 'WhatsApp', url: 'https://wa.me/+237678687593', icon: 'messageCircle' },
-  { name: 'Twitter (X)', url: 'https://twitter.com/ridzcoder', icon: 'twitter' },
-  { name: 'LinkedIn', url: 'https://linkedin.com/in/ridzcoder', icon: 'linkedin' },
-  { name: 'Instagram', url: 'https://instagram.com/ridzcoder', icon: 'instagram' },
-  { name: 'YouTube', url: 'https://youtube.com/@ridzcoder', icon: 'youtube' },
-];
+
 
 export const TECH_STACK: TechItem[] = [
   { name: 'React', icon: 'SiReact' },
