@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import { Heart, Gift, Smartphone, Wallet, Copy, Check } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
-import Scene3D from '@/components/features/Scene3D';
+import VantaGlobeBackground from '@/components/features/VantaGlobeBackground';
 import Footer from '@/components/layout/Footer';
 import { toast } from 'sonner';
 
-// Country configuration for mobile money
 const countries = [
   { code: 'KE', name: 'Kenya', provider: 'M-PESA', phoneLength: 9, prefix: '254', currency: 'KES' },
   { code: 'UG', name: 'Uganda', provider: 'MTN', phoneLength: 9, prefix: '256', currency: 'UGX' },
@@ -18,17 +17,14 @@ const countries = [
 ];
 
 export default function Donation() {
-  // Mobile Money state
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const [phoneNumber, setPhoneNumber] = useState('');
   const [amount, setAmount] = useState('');
   const [loadingProvider, setLoadingProvider] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // Your wallet address (replace with your actual MiniPay address)
   const walletAddress = import.meta.env.VITE_DONATION_WALLET || '0xYourWalletAddressHere';
 
-  // Copy address to clipboard
   const copyAddress = () => {
     navigator.clipboard.writeText(walletAddress);
     setCopied(true);
@@ -36,7 +32,6 @@ export default function Donation() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  // Format phone number for API
   const formatPhoneForAPI = (rawPhone: string, country: typeof selectedCountry) => {
     let cleaned = rawPhone.replace(/\D/g, '');
     if (cleaned.startsWith('0')) cleaned = cleaned.slice(1);
@@ -44,7 +39,6 @@ export default function Donation() {
     return `${country.prefix}${cleaned}`;
   };
 
-  // Handle mobile money donation
   const handleMobileDonation = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phoneNumber || !amount) {
@@ -61,15 +55,9 @@ export default function Donation() {
     setLoadingProvider(true);
     let endpoint = '';
     switch (selectedCountry.provider) {
-      case 'M-PESA':
-        endpoint = '/api/donate/mpesa';
-        break;
-      case 'Airtel':
-        endpoint = '/api/donate/airtel';
-        break;
-      case 'MTN':
-        endpoint = '/api/donate/mtn';
-        break;
+      case 'M-PESA': endpoint = '/api/donate/mpesa'; break;
+      case 'Airtel': endpoint = '/api/donate/airtel'; break;
+      case 'MTN': endpoint = '/api/donate/mtn'; break;
       default:
         toast.error('Provider not supported yet');
         setLoadingProvider(false);
@@ -104,7 +92,7 @@ export default function Donation() {
 
   return (
     <div className="relative min-h-screen">
-      <Scene3D />
+      <VantaGlobeBackground />
       <MenuButton />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 py-20">
@@ -117,7 +105,6 @@ export default function Donation() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Mobile Money Column */}
           <div className="glass-card rounded-2xl p-6">
             <div className="flex items-center gap-2 mb-4">
               <Smartphone className="size-6 text-primary" />
@@ -183,50 +170,47 @@ export default function Donation() {
             </form>
           </div>
 
-          {/* MiniPay Column – No Wagmi, just QR + address */}
           <div className="glass-card rounded-2xl p-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
               <Wallet className="size-6 text-primary" />
               <h2 className="text-xl font-bold text-foreground">MiniPay (cUSD)</h2>
             </div>
-
             <div className="flex flex-col items-center space-y-4">
-              {/* Static QR code image */}
               <div className="bg-white p-3 rounded-xl inline-block">
                 <img 
                   src="https://files.catbox.moe/9irij4.png" 
                   alt="MiniPay QR Code"
                   className="w-40 h-40 object-contain"
                   onError={(e) => {
-                    // Fallback if image fails to load
-                    e.currentTarget.src = 'https://placehold.co/160x160/1e3a8a/white?text=QR+Code';
+                    e.currentTarget.src = 'https://placehold.co/160x160/FFD700/000?text=QR+Code';
                   }}
                 />
               </div>
-
-              {/* Wallet Address with Copy Button */}
               <div className="w-full">
                 <div className="flex items-center justify-between gap-2 bg-background/50 p-2 rounded-lg">
                   <code className="text-xs font-mono text-foreground truncate">{walletAddress}</code>
                   <button
                     onClick={copyAddress}
                     className="p-1 hover:bg-primary/20 rounded transition-colors"
-                    aria-label="Copy address"
                   >
                     {copied ? <Check className="size-4 text-primary" /> : <Copy className="size-4 text-muted-foreground" />}
                   </button>
                 </div>
               </div>
-
-              {/* Hint */}
               <div className="text-xs text-muted-foreground space-y-1">
-                <p>📱 Download minipay from play store & Apple Store Scan with MiniPay camera or copy address also you can send using the third bottom button on the app</p>
+                <p>📱 Scan with MiniPay camera or copy address</p>
                 <p className="text-primary/80">Send any amount – every contribution helps 🙌</p>
               </div>
             </div>
           </div>
         </div>
+
+        <div className="mt-8 text-center text-xs text-muted-foreground">
+          <p>🔹 MiniPay works inside the MiniPay browser or any Celo‑compatible wallet.</p>
+          <p>🔹 Mobile money payments are in sandbox mode for testing – go‑live requires approved accounts.</p>
+        </div>
       </div>
+
       <Footer />
     </div>
   );
