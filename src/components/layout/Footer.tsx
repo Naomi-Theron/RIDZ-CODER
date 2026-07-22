@@ -30,55 +30,6 @@ export default function Footer() {
           From layout to logic, everything is hand-coded to reflect my skills and style. Hope you like it!
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <a
-            href="https://ridzcoder.zone.id/login"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
-          >
-            <QrCode className="size-4" />
-            Ridz Only
-          </a>
-          <a
-            href="https://github.com/ridzcoder/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary/10 border border-primary/20 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
-          >
-            <Github className="size-4" />
-            Source Code
-          </a>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-4 text-xs">
-          <a
-            href="https://github.com/ridzcoder/NEMESIS-MD/issues"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Report Issues
-          </a>
-          <span className="text-border">•</span>
-          <a
-            href="https://wa.me/255611199851"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            WhatsApp Support
-          </a>
-          <span className="text-border">•</span>
-          <a
-            href="https://whatsapp.com/channel/0029Vb73EYZFXUujAoHFor1i"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Channel
-          </a>
-        </div>
 
         {/* System Status + Live Clock */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2 border-t border-border/50">
