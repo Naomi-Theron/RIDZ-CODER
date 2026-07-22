@@ -16,9 +16,8 @@ import { useSocialLinksStore } from '@/stores/socialLinksStore';
 import { toast } from 'sonner';
 import type { Project } from '@/types';
 import MenuButton from '@/components/layout/MenuButton';
-import Scene3D from '@/components/features/Scene3D';
+import VantaGlobeBackground from '@/components/features/VantaGlobeBackground';
 
-// ---------- Helper: Project Form ----------
 interface ProjectFormData {
   title: string;
   description: string;
@@ -39,9 +38,7 @@ const EMPTY_PROJECT_FORM: ProjectFormData = {
   sortOrder: '0',
 };
 
-// ---------- Editor Components ----------
-
-// 1. Profile Editor
+// Profile Editor Component
 function ProfileEditor() {
   const { name, title, bio, avatarUrl, resumeUrl, typingRoles, updateSettings } = useSettingsStore();
 
@@ -64,11 +61,11 @@ function ProfileEditor() {
           <Input value={name} onChange={e => updateSettings({ name: e.target.value })} className="bg-background/50" />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm text-muted-foreground">Title (subtitle)</Label>
+          <Label className="text-sm text-muted-foreground">Title</Label>
           <Input value={title} onChange={e => updateSettings({ title: e.target.value })} className="bg-background/50" />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm text-muted-foreground">Avatar Image URL</Label>
+          <Label className="text-sm text-muted-foreground">Avatar URL</Label>
           <Input value={avatarUrl} onChange={e => updateSettings({ avatarUrl: e.target.value })} className="bg-background/50" placeholder="https://..." />
         </div>
         <div className="space-y-1.5">
@@ -77,7 +74,7 @@ function ProfileEditor() {
         </div>
         <div className="md:col-span-2 space-y-1.5">
           <Label className="text-sm text-muted-foreground">Typing Roles (comma separated)</Label>
-          <Input value={typingRoles.join(', ')} onChange={e => handleRolesChange(e.target.value)} className="bg-background/50" placeholder="Developer, Designer, Creator" />
+          <Input value={typingRoles.join(', ')} onChange={e => handleRolesChange(e.target.value)} className="bg-background/50" />
         </div>
         {bio.map((paragraph, idx) => (
           <div key={idx} className="md:col-span-2 space-y-1.5">
@@ -91,7 +88,7 @@ function ProfileEditor() {
   );
 }
 
-// 2. Tech Stack Editor
+// Tech Stack Editor
 function TechStackEditor() {
   const { items, addItem, updateItem, deleteItem } = useTechStackStore();
   const [newName, setNewName] = useState('');
@@ -126,7 +123,7 @@ function TechStackEditor() {
   );
 }
 
-// 3. Social Links Editor
+// Social Links Editor
 function SocialLinksEditor() {
   const { links, addLink, updateLink, deleteLink } = useSocialLinksStore();
   const [newName, setNewName] = useState('');
@@ -164,7 +161,7 @@ function SocialLinksEditor() {
   );
 }
 
-// 4. Site Settings Editor
+// Site Settings Editor
 function SiteSettingsEditor() {
   const { yearsActiveStart, totalCommits, footerText, copyrightName, siteEmail, timezone, updateSettings } = useSettingsStore();
 
@@ -193,7 +190,7 @@ function SiteSettingsEditor() {
           <Input type="email" value={siteEmail} onChange={e => updateSettings({ siteEmail: e.target.value })} className="bg-background/50" />
         </div>
         <div className="space-y-1.5">
-          <Label className="text-sm text-muted-foreground">Timezone (for footer clock)</Label>
+          <Label className="text-sm text-muted-foreground">Timezone</Label>
           <Input value={timezone} onChange={e => updateSettings({ timezone: e.target.value })} className="bg-background/50" />
         </div>
       </div>
@@ -201,7 +198,7 @@ function SiteSettingsEditor() {
   );
 }
 
-// ---------- Main Dashboard ----------
+// Main Dashboard
 export default function Dashboard() {
   const { projects, addProject, updateProject, deleteProject } = useProjectStore();
   const logout = useAuthStore((s) => s.logout);
@@ -274,17 +271,13 @@ export default function Dashboard() {
 
   return (
     <div className="relative min-h-screen">
-      <Scene3D />
+      <VantaGlobeBackground />
       <MenuButton />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-8">
-        {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
-            <Link
-              to="/"
-              className="glass-card size-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <Link to="/" className="glass-card size-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="size-4" />
             </Link>
             <div className="flex items-center gap-2">
@@ -292,17 +285,11 @@ export default function Dashboard() {
               <h1 className="text-xl font-bold text-foreground">Dashboard</h1>
             </div>
           </div>
-          <Button
-            onClick={handleLogout}
-            variant="ghost"
-            size="sm"
-            className="text-muted-foreground hover:text-red-400"
-          >
+          <Button onClick={handleLogout} variant="ghost" size="sm" className="text-muted-foreground hover:text-red-400">
             Logout
           </Button>
         </div>
 
-        {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="glass-card w-full justify-start mb-6 overflow-x-auto flex-nowrap">
             <TabsTrigger value="projects">Projects</TabsTrigger>
@@ -312,28 +299,18 @@ export default function Dashboard() {
             <TabsTrigger value="settings">Site Settings</TabsTrigger>
           </TabsList>
 
-          {/* Projects Tab */}
           <TabsContent value="projects">
             <div className="mb-4 flex justify-end">
-              <Button
-                onClick={() => { setShowForm(true); setEditingId(null); setForm(EMPTY_PROJECT_FORM); }}
-                className="bg-primary text-primary-foreground hover:brightness-110 text-sm font-semibold"
-                size="sm"
-              >
-                <Plus className="size-4 mr-1.5" />
-                Add Project
+              <Button onClick={() => { setShowForm(true); setEditingId(null); setForm(EMPTY_PROJECT_FORM); }} className="bg-primary text-primary-foreground hover:brightness-110 text-sm font-semibold" size="sm">
+                <Plus className="size-4 mr-1.5" /> Add Project
               </Button>
             </div>
 
             {showForm && (
               <div className="glass-card rounded-2xl p-6 mb-6 animate-fade-in-up">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="font-semibold text-foreground">
-                    {editingId ? 'Edit Project' : 'New Project'}
-                  </h2>
-                  <button onClick={resetForm} className="text-muted-foreground hover:text-foreground transition-colors">
-                    <X className="size-5" />
-                  </button>
+                  <h2 className="font-semibold text-foreground">{editingId ? 'Edit Project' : 'New Project'}</h2>
+                  <button onClick={resetForm} className="text-muted-foreground hover:text-foreground"><X className="size-5" /></button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
@@ -368,8 +345,7 @@ export default function Dashboard() {
                 <div className="flex justify-end gap-2 mt-5">
                   <Button variant="ghost" onClick={resetForm} className="text-muted-foreground">Cancel</Button>
                   <Button onClick={handleSaveProject} className="bg-primary text-primary-foreground hover:brightness-110 font-semibold">
-                    <Save className="size-4 mr-1.5" />
-                    {editingId ? 'Update' : 'Create'}
+                    <Save className="size-4 mr-1.5" /> {editingId ? 'Update' : 'Create'}
                   </Button>
                 </div>
               </div>
@@ -395,9 +371,9 @@ export default function Dashboard() {
                       <p className="text-xs text-muted-foreground truncate">{project.techs.join(' • ')}</p>
                     </div>
                     <div className="flex items-center gap-1 flex-shrink-0">
-                      {project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="size-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"><ExternalLink className="size-3.5" /></a>}
-                      <button onClick={() => startEdit(project)} className="size-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-white/5 transition-colors"><Pencil className="size-3.5" /></button>
-                      <button onClick={() => handleDeleteProject(project.id, project.title)} className="size-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-red-400 hover:bg-white/5 transition-colors"><Trash2 className="size-3.5" /></button>
+                      {project.url && <a href={project.url} target="_blank" rel="noopener noreferrer" className="size-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-white/5"><ExternalLink className="size-3.5" /></a>}
+                      <button onClick={() => startEdit(project)} className="size-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-white/5"><Pencil className="size-3.5" /></button>
+                      <button onClick={() => handleDeleteProject(project.id, project.title)} className="size-8 rounded-lg flex items-center justify-center text-muted-foreground hover:text-red-400 hover:bg-white/5"><Trash2 className="size-3.5" /></button>
                     </div>
                   </div>
                 ))
@@ -410,21 +386,10 @@ export default function Dashboard() {
             )}
           </TabsContent>
 
-          <TabsContent value="profile">
-            <ProfileEditor />
-          </TabsContent>
-
-          <TabsContent value="tech">
-            <TechStackEditor />
-          </TabsContent>
-
-          <TabsContent value="social">
-            <SocialLinksEditor />
-          </TabsContent>
-
-          <TabsContent value="settings">
-            <SiteSettingsEditor />
-          </TabsContent>
+          <TabsContent value="profile"><ProfileEditor /></TabsContent>
+          <TabsContent value="tech"><TechStackEditor /></TabsContent>
+          <TabsContent value="social"><SocialLinksEditor /></TabsContent>
+          <TabsContent value="settings"><SiteSettingsEditor /></TabsContent>
         </Tabs>
       </div>
     </div>
