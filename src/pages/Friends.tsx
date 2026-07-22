@@ -1,57 +1,55 @@
-import { 
-  Github, Twitter, Linkedin, MessageCircle, Users, Code, Heart, Gamepad2, Briefcase, Plane 
-} from 'lucide-react';
+import { Github, Twitter, Linkedin, MessageCircle, Users, Code, Heart, Gamepad2, Briefcase, Plane } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
-import Scene3D from '@/components/features/Scene3D';
-import Footer from '@/components/layout/Footer'; 
+import VantaGlobeBackground from '@/components/features/VantaGlobeBackground';
+import Footer from '@/components/layout/Footer';
 
 const friendsList = [
   {
-    name: 'Jessie',
+    name: 'Jinx Bae',
     role: 'Creative TikToker & Gamer',
-    avatar: 'https://files.catbox.moe/upvjj5.jpg',
-    bio: 'Not into tech, but amazing at comfort and storytelling. Jessie brings creativity to every conversation,She is my favorite and my safe place.',
+    avatar: 'https://files.catbox.moe/6ptig7.png',
+    bio: 'Not into tech, but amazing at comfort and storytelling. Jinx brings creativity to every conversation.',
     icon: <Gamepad2 className="size-4" />,
-    interests: 'Tiktok, gaming, music',
+    interests: 'TikTok, gaming, music',
   },
   {
     name: 'Kevin Tech',
     role: 'Tech Enthusiast & Developer',
-    avatar: 'https://files.catbox.moe/pynavf.png',
+    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
     github: 'https://github.com/kevintech-hub',
     bio: 'Full‑stack developer, open‑source contributor, and cloud architect. Always debugging something.',
     icon: <Code className="size-4" />,
-    interests: 'React, JavaScript, Typescript',
+    interests: 'React, JavaScript, TypeScript',
   },
   {
     name: 'Marion',
     role: 'Overthinking & Strategy',
-    avatar: 'https://files.catbox.moe/ifhwop.png',
+    avatar: 'https://randomuser.me/api/portraits/women/3.jpg',
     bio: 'Not a coder, but a business lady and a single mother of one and always admirable. Loves hiking and coffee.',
     icon: <Briefcase className="size-4" />,
     interests: 'Marketing, leadership, nature',
   },
   {
-    name: 'sarah Feffe',
+    name: 'Sarah Feffe',
     role: 'My OG & Student of Arts',
     avatar: 'https://files.catbox.moe/0wbapt.png',
-    bio: 'Always There when you need her, Funny girl first a nice voice but very talkative when with a trusted person.',
+    bio: 'Always there when you need her, funny girl, first a nice voice but very talkative when with a trusted person.',
     icon: <Plane className="size-4" />,
-    interests: 'Art, Tiktok, traveling',
+    interests: 'Art, TikTok, traveling',
   },
 ];
 
 export default function Friends() {
   return (
     <div className="relative min-h-screen">
-      <Scene3D />
+      <VantaGlobeBackground />
       <MenuButton />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 py-20">
         <div className="text-center mb-10 animate-fade-in-up">
           <Users className="size-12 text-primary mx-auto mb-3" />
           <h1 className="text-3xl font-bold text-foreground">My Friends & Collaborators</h1>
-          <p className="text-muted-foreground mt-2">A mix of tech minds and creative souls,If you Don't see your self go Die.</p>
+          <p className="text-muted-foreground mt-2">A mix of tech minds and creative souls.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -60,7 +58,6 @@ export default function Friends() {
               key={idx}
               className="glass-card rounded-2xl p-6 text-center transition-all duration-300 hover:scale-[1.02] hover:border-primary/30"
             >
-              {/* Centered, larger avatar */}
               <div className="flex justify-center mb-4">
                 <img
                   src={friend.avatar}
@@ -88,7 +85,6 @@ export default function Friends() {
         </div>
       </div>
 
-      {/* Shared footer */}
       <Footer />
     </div>
   );
