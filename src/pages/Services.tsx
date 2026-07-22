@@ -4,7 +4,7 @@ import {
   Package, Send, Coffee, MessageCircle
 } from 'lucide-react';
 import MenuButton from '@/components/layout/MenuButton';
-import Scene3D from '@/components/features/Scene3D';
+import VantaGlobeBackground from '@/components/features/VantaGlobeBackground';
 import Footer from '@/components/layout/Footer';
 import { toast } from 'sonner';
 
@@ -88,7 +88,9 @@ export default function Services() {
     timeline: '',
   });
   const [sending, setSending] = useState(false);
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/meebdywn';
+
+  // 🔁 Replace with your Formspree endpoint
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/your-form-id';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -102,7 +104,6 @@ export default function Services() {
     }
     setSending(true);
     try {
-      // Prepare data for Formspree
       const payload = {
         name: formData.name,
         email: formData.email,
@@ -117,10 +118,7 @@ export default function Services() {
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload),
       });
 
@@ -141,11 +139,10 @@ export default function Services() {
 
   return (
     <div className="relative min-h-screen">
-      <Scene3D />
+      <VantaGlobeBackground />
       <MenuButton />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 py-20">
-        {/* Header */}
         <div className="text-center mb-10 animate-fade-in-up">
           <div className="inline-flex items-center gap-2 glass-card rounded-full px-4 py-1.5 mb-4">
             <Package className="size-4 text-primary" />
@@ -157,7 +154,6 @@ export default function Services() {
           </p>
         </div>
 
-        {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-12">
           {services.map((service) => (
             <div
@@ -187,7 +183,6 @@ export default function Services() {
           ))}
         </div>
 
-        {/* Order Form */}
         <div className="glass-card rounded-2xl p-6 max-w-2xl mx-auto">
           <h2 className="text-xl font-bold text-foreground mb-2 text-center">
             {selectedService ? 'Request This Service' : 'Request a Service'}
