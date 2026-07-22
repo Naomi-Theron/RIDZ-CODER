@@ -15,7 +15,7 @@ export default function Home() {
       <div className="relative z-10">
         <ProfileSection />
         <TechStackSection />
-        <div className="text-white text-center py-10">Projects coming soon</div>
+        <ProjectsSection/>
         <ContactSection />
         <Footer />
       </div>
