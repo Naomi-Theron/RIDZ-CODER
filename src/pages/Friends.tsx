@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 
 const friendsList = [
   {
-    name: 'Jinx Bae',
+    name: 'Jessie Bae',
     role: 'Creative TikToker & Gamer',
     avatar: 'https://files.catbox.moe/6ptig7.png',
     bio: 'Not into tech, but amazing at comfort and storytelling. Jinx brings creativity to every conversation.',
@@ -22,9 +22,9 @@ const friendsList = [
     interests: 'React, JavaScript, TypeScript',
   },
   {
-    name: 'Marion',
+    name: 'Faridah',
     role: 'Overthinking & Strategy',
-    avatar: 'https://randomuser.me/api/portraits/women/3.jpg',
+    avatar: 'https://files.catbox.moe/njxpme.png',
     bio: 'Not a coder, but a business lady and a single mother of one and always admirable. Loves hiking and coffee.',
     icon: <Briefcase className="size-4" />,
     interests: 'Marketing, leadership, nature',
