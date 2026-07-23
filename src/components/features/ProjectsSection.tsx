@@ -10,11 +10,6 @@ export default function ProjectSection() {
   if (sorted.length === 0) {
     return (
       <section id="projects" className="px-4 py-10">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-mono uppercase tracking-wider mb-3">
-            <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-            Featured Projects
-          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">My Projects</h2>
           <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">No projects yet. Check back soon!</p>
         </div>
