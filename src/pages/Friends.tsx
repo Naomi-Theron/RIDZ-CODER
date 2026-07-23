@@ -7,7 +7,7 @@ const friendsList = [
   {
     name: 'Jessie Bae',
     role: 'Creative TikToker & Gamer',
-    avatar: 'https://files.catbox.moe/6ptig7.png',
+    avatar: 'https://files.catbox.moe/upvjj5.jpg',
     bio: 'Not into tech, but amazing at comfort and storytelling. Jinx brings creativity to every conversation.',
     icon: <Gamepad2 className="size-4" />,
     interests: 'TikTok, gaming, music',
@@ -25,7 +25,7 @@ const friendsList = [
     name: 'Faridah',
     role: 'Overthinking & Strategy',
     avatar: 'https://files.catbox.moe/njxpme.png',
-    bio: 'Not a coder, but a business lady and a single mother of one and always admirable. Loves hiking and coffee.',
+    bio: 'Not a coder, but a business lady and my love of all time always admirable. Loves hiking and coffee.soon marrying her',
     icon: <Briefcase className="size-4" />,
     interests: 'Marketing, leadership, nature',
   },
