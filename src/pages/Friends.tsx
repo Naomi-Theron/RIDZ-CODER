@@ -15,7 +15,7 @@ const friendsList = [
   {
     name: 'Kevin Tech',
     role: 'Tech Enthusiast & Developer',
-    avatar: 'https://randomuser.me/api/portraits/men/2.jpg',
+    avatar: 'https://files.catbox.moe/7k4bfh.jpg',
     github: 'https://github.com/kevintech-hub',
     bio: 'Full‑stack developer, open‑source contributor, and cloud architect. Always debugging something.',
     icon: <Code className="size-4" />,
