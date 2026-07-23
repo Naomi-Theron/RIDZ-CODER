@@ -10,7 +10,7 @@ export default function ProjectSection() {
   if (sorted.length === 0) {
     return (
       <section id="projects" className="px-4 py-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">My Projects</h2>
+         <div> <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">My Projects</h2>
           <p className="text-sm text-muted-foreground mt-2 max-w-xl mx-auto">No projects yet. Check back soon!</p>
         </div>
       </section>
